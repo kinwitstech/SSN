@@ -1,9 +1,14 @@
-import { localisables } from "./common/localisables";
+import { RouterProvider } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import router from "./routes";
 
 function App() {
-  const { welcome } = localisables;
-
-  return <div>{welcome}</div>;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <TanStackRouterDevtools router={router} initialIsOpen={false} />
+    </>
+  );
 }
 
 export default App;

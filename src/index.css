@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #0190CC;
+  --color-primary-dark: #0086c1;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
