@@ -22,7 +22,11 @@ const LandingPage = () => {
 
       <div className="w-full max-w-sm space-y-3">
         <Button text="Sign In" to="/login" />
-        <Button text="Register Clinic" variant="outlined" />
+        <Button
+          text="Register Clinic"
+          variant="outlined"
+          to="/registerClinic"
+        />
       </div>
 
       {/* <p className="text-sm text-gray-600 mt-6">

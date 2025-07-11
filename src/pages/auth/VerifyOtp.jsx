@@ -1,5 +1,5 @@
 import { KeyIcon } from "@heroicons/react/24/outline";
-import { useLocation } from "@tanstack/react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import ssnLogo from "../../assets/ssn-logo.png";
 import BackArrowButton from "../../components/BackArrowButton";
@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 
 const VerifyOtp = () => {
   const { state: { phone = "" } = {} } = useLocation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -16,6 +17,7 @@ const VerifyOtp = () => {
 
   const onSubmit = (data) => {
     console.log("Submitted OTP:", data.otp);
+    navigate({ to: "/superAdmin" });
   };
 
   return (
@@ -62,12 +64,7 @@ const VerifyOtp = () => {
           )}
         </div>
 
-        <Button
-          text="Verify & Login"
-          type="submit"
-          disabled={!isValid}
-          to="/superAdmin"
-        />
+        <Button text="Verify & Login" type="submit" disabled={!isValid} />
       </form>
     </div>
   );

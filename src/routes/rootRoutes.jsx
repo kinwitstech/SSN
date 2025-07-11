@@ -4,6 +4,7 @@ import {
   loginRoute,
   notFoundRoute,
   registerClinicRoute,
+  registerClinicSuccessRoute,
   verifyOtp,
 } from "./authRoutes";
 import { appLayoutRoute } from "./superAdminRoutes";
@@ -18,4 +19,5 @@ export const routeTree = rootRoute.addChildren([
   verifyOtp,
   appLayoutRoute,
   notFoundRoute,
+  registerClinicSuccessRoute,
 ]);

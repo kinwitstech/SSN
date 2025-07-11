@@ -1,9 +1,10 @@
 import { createRoute } from "@tanstack/react-router";
 import LandingPage from "../pages/auth/LandingPage";
 import Login from "../pages/auth/Login";
-import RegisterClinic from "../pages/auth/RegisterClinic";
-import VerifyOtp from "../pages/auth/VerifyOtp";
 import NotFound from "../pages/auth/NotFound";
+import ClinicSetupSuccess from "../pages/auth/RegisterClinic/ClinicSetupSuccess";
+import RegisterClinic from "../pages/auth/RegisterClinic/index";
+import VerifyOtp from "../pages/auth/VerifyOtp";
 import { rootRoute } from "./rootRoutes";
 
 export const landingPageRoute = createRoute({
@@ -28,6 +29,12 @@ export const verifyOtp = createRoute({
   path: "/verify-otp",
   getParentRoute: () => rootRoute,
   component: VerifyOtp,
+});
+
+export const registerClinicSuccessRoute = createRoute({
+  path: "/registerClinic/success",
+  getParentRoute: () => rootRoute,
+  component: ClinicSetupSuccess,
 });
 
 export const notFoundRoute = createRoute({
