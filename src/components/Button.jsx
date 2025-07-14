@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 const Button = ({ className, disabled, onClick, text, to, type, variant }) => {
   const navigate = useNavigate();
 
-  const baseStyles =
-    "w-full font-medium py-2 rounded-lg transition cursor-pointer";
+  const baseStyles = "w-full font-medium py-3 rounded-lg";
 
   const filledStyles = "bg-primary text-white hover:bg-primary-dark";
 

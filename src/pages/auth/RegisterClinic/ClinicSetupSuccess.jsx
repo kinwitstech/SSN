@@ -3,7 +3,7 @@ import Button from "../../../components/Button";
 
 const ClinicSetupSuccess = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
+    <div className="min-h-screen flex-center flex-col px-4 bg-white">
       <div className="flex mb-10">
         <SparklesIcon className="w-32 h-32 text-primary mb-6" />
       </div>

@@ -19,4 +19,8 @@ export const fullSchema = clinicDetailsSchema.merge(brandingSchema);
 // 🧪 Fields to validate per step
 export const stepFieldsMap = {
   0: ["clinicLogo"],
+  1: [],
+  2: [],
+  3: [],
+  4: [],
 };

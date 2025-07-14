@@ -4,23 +4,34 @@ import Button from "../../components/Button";
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-8 text-center">
-      <img src={ssnLogo} alt="SSN Logo" className="w-30 h-30 mb-6" />
-      <img src={doctorImage} alt="Doctor" className="w-96 h-auto mb-6" />
+    <div className="min-h-screen bg-white flex-center flex-col px-4 py-8 text-center">
+      <img
+        src={ssnLogo || ""}
+        alt="SSN Logo"
+        className="w-20 h-auto mb-6 object-contain"
+        loading="lazy"
+      />
+      <img
+        src={doctorImage || ""}
+        srcSet={`${doctorImage} 1x, ${doctorImage} 2x`}
+        alt="Doctor"
+        className="w-full max-w-md h-auto mb-6 object-contain"
+        loading="lazy"
+      />
 
       <div className="mb-4">
-        <h1 className="text-2xl font-bold mb-3">
+        <h1 className="mb-3">
           Affordable Care.
           <br />
           Anywhere.
         </h1>
-        <p className="text-gray-600 text-sm mb-6 max-w-sm">
+        <p className="mb-6 max-w-sm">
           Built for clinics and doctors to bring quality healthcare to every
           patient.
         </p>
       </div>
 
-      <div className="w-full max-w-sm space-y-3">
+      <div className="w-full max-w-sm space-y-5">
         <Button text="Sign In" to="/login" />
         <Button
           text="Register Clinic"
