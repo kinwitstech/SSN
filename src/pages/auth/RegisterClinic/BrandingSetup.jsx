@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { Controller, useFormContext } from "react-hook-form";
 
+const acceptedTypes = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
+
 export default function BrandingSetup() {
   const {
     register,
@@ -10,19 +12,41 @@ export default function BrandingSetup() {
     setValue,
     watch,
     trigger,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useFormContext();
   const selectedColor = watch("clinicPrimaryColor") || "#0190CC";
   const selectedLogo = watch("clinicLogo");
-  const [logoPreview, setLogoPreview] = useState(null);
+  const [logoPreview, setLogoPreview] = useState("");
 
   const handleLogoChange = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setValue("clinicLogo", file, { shouldValidate: true });
-      await trigger("clinicLogo");
-      setLogoPreview(URL.createObjectURL(file));
+    const maxSize = 500 * 1024; // 500 KB
+    if (!file) return;
+    if (file.size > maxSize) {
+      setError("clinicLogo", {
+        type: "manual",
+        message: "Image must be less than 500 KB.",
+      });
+      setValue("clinicLogo", null);
+      setLogoPreview("");
+      return;
     }
+    if (!acceptedTypes.includes(file.type)) {
+      setError("clinicLogo", {
+        type: "manual",
+        message: "Please upload a PNG, JPG, or WebP image.",
+      });
+      setValue("clinicLogo", null);
+      setLogoPreview("");
+      return;
+    }
+    // Valid file: clear errors
+    clearErrors("clinicLogo");
+    setValue("clinicLogo", file, { shouldValidate: true });
+    await trigger("clinicLogo");
+    setLogoPreview(URL.createObjectURL(file));
   };
 
   useEffect(() => {
@@ -37,7 +61,7 @@ export default function BrandingSetup() {
     <div className="space-y-6">
       {/* Upload Logo */}
       <div className="flex md:flex-row items-center gap-4 mb-2">
-        <div className="w-32 h-32 bg-blue-50 flex items-center justify-center rounded overflow-hidden self-center md:self-auto">
+        <div className="w-32 h-32 bg-blue-50 flex-center rounded overflow-hidden self-center md:self-auto">
           {logoPreview ? (
             <img
               src={logoPreview}
@@ -50,21 +74,19 @@ export default function BrandingSetup() {
         </div>
 
         <div className="text-center md:text-left">
-          <label htmlFor="logoUpload" className="block mb-2">
-            Upload Clinic’s Logo
-          </label>
-          <input
-            id="logoUpload"
-            type="file"
-            accept="image/*"
-            onChange={handleLogoChange}
-            className="hidden"
-          />
+          <div className="block mb-2">Upload Clinic’s Logo</div>
           <label
             htmlFor="logoUpload"
             className="cursor-pointer bg-primary text-white px-4 py-2 rounded inline-block"
           >
-            Choose Logo
+            <input
+              id="logoUpload"
+              type="file"
+              accept="image/*"
+              onChange={handleLogoChange}
+              className="hidden"
+            />
+            {selectedLogo?.name ? "Edit Logo" : "Choose Logo"}
           </label>
 
           {selectedLogo && typeof selectedLogo === "object" && (
@@ -73,7 +95,7 @@ export default function BrandingSetup() {
         </div>
       </div>
       {errors?.clinicLogo && (
-        <p className="text-red-500 text-sm mb-0">Please select an image!</p>
+        <p className="text-red-500 text-sm mb-0">{errors.clinicLogo.message}</p>
       )}
 
       {/* Color Picker */}
