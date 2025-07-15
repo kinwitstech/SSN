@@ -20,6 +20,10 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log("Phone submitted:", data.phone);
+    navigate({
+      to: "/verify-otp",
+      state: { phone: getValues("phone") },
+    });
   };
 
   const handleInputChange = (e) => {
@@ -34,13 +38,13 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center px-4 py-6 relative">
-      <BackArrowButton />
+    <div className="min-h-screen flex-center px-4 py-6 relative">
+      <BackArrowButton to="/" />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col items-center w-full max-w-sm space-y-6"
       >
-        <img src={ssnLogo} alt="SSN Logo" className="w-20 h-20 mx-auto" />
+        <img src={ssnLogo || ""} alt="SSN Logo" className="w-20 h-20 mx-auto" />
 
         <h2 className="text-2xl font-bold text-center w-full">Login</h2>
 
@@ -82,12 +86,6 @@ const Login = () => {
           text="Get OTP"
           type="submit"
           disabled={!isValid || phoneValue.length < 10}
-          onClick={() =>
-            navigate({
-              to: "/verify-otp",
-              state: { phone: getValues("phone") },
-            })
-          }
         />
       </form>
     </div>

@@ -4829,6 +4829,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-colorful@npm:^5.6.1":
+  version: 5.6.1
+  resolution: "react-colorful@npm:5.6.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/48eb73cf71e10841c2a61b6b06ab81da9fffa9876134c239bfdebcf348ce2a47e56b146338e35dfb03512c85966bfc9a53844fc56bc50154e71f8daee59ff6f0
+  languageName: node
+  linkType: hard
+
 "react-dom@npm:^19.1.0":
   version: 19.1.0
   resolution: "react-dom@npm:19.1.0"
@@ -5336,6 +5346,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sonner@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "sonner@npm:2.0.6"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+  checksum: 10c0/df6ab28ebc53d612ea9caa3b9ac2d12b7b15b619750c5bcf6c4e064a720cb24b383fd5ce074f5fe5183115c69d7f505226649cf157e25e954447ec4ed8749291
+  languageName: node
+  linkType: hard
+
 "source-map-js@npm:^1.2.1":
   version: 1.2.1
   resolution: "source-map-js@npm:1.2.1"
@@ -5404,8 +5424,10 @@ __metadata:
     postcss: "npm:^8.5.6"
     prop-types: "npm:^15.8.1"
     react: "npm:^19.1.0"
+    react-colorful: "npm:^5.6.1"
     react-dom: "npm:^19.1.0"
     react-hook-form: "npm:^7.60.0"
+    sonner: "npm:^2.0.6"
     tailwindcss: "npm:^4.1.11"
     vite: "npm:^7.0.0"
     vite-plugin-pwa: "npm:^1.0.1"

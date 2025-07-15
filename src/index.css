@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0190CC;
+  --color-primary: #0190cc;
   --color-primary-dark: #0086c1;
 }
 
@@ -9,4 +9,66 @@ html,
 body,
 #root {
   height: 100%;
+}
+
+@layer base {
+  button {
+    @apply transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem); /* ~28px to 40px */
+    @apply font-bold leading-tight text-gray-900;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4.5vw, 2rem); /* ~24px to 32px */
+    @apply font-semibold leading-snug text-gray-800;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem); /* ~20px to 28px */
+    @apply font-semibold leading-snug text-gray-800;
+  }
+
+  h4 {
+    font-size: clamp(1.125rem, 3.5vw, 1.5rem); /* ~18px to 24px */
+    @apply font-medium text-gray-800;
+  }
+
+  h5 {
+    font-size: clamp(1rem, 3vw, 1.25rem); /* ~16px to 20px */
+    @apply font-medium text-gray-700;
+  }
+
+  h6 {
+    font-size: clamp(0.875rem, 2.5vw, 1rem); /* ~14px to 16px */
+    @apply font-medium text-gray-700;
+  }
+
+  p,
+  label,
+  body {
+    font-size: clamp(1rem, 2.5vw, 1.125rem); /* ~16px to 18px */
+    @apply text-gray-700 leading-relaxed;
+  }
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }

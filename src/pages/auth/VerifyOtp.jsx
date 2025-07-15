@@ -1,5 +1,5 @@
 import { KeyIcon } from "@heroicons/react/24/outline";
-import { useLocation } from "@tanstack/react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import ssnLogo from "../../assets/ssn-logo.png";
 import BackArrowButton from "../../components/BackArrowButton";
@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 
 const VerifyOtp = () => {
   const { state: { phone = "" } = {} } = useLocation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -15,18 +16,19 @@ const VerifyOtp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Submitted OTP:", data.otp);
+    console.log("Submitted OTP:", data?.otp);
+    navigate({ to: "/superAdmin" });
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center px-4 py-6 relative">
+    <div className="min-h-screen flex-center px-4 py-6 relative">
       <BackArrowButton />
 
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col items-center w-full max-w-sm space-y-6"
       >
-        <img src={ssnLogo} alt="SSN Logo" className="w-20 h-20 mx-auto" />
+        <img src={ssnLogo || ""} alt="SSN Logo" className="w-20 h-20 mx-auto" />
 
         <h2 className="text-2xl font-bold text-center w-full">
           Input Verification Code
@@ -62,12 +64,7 @@ const VerifyOtp = () => {
           )}
         </div>
 
-        <Button
-          text="Verify & Login"
-          type="submit"
-          disabled={!isValid}
-          to="/superAdmin"
-        />
+        <Button text="Verify & Login" type="submit" disabled={!isValid} />
       </form>
     </div>
   );
