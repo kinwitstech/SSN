@@ -5431,6 +5431,7 @@ __metadata:
     tailwindcss: "npm:^4.1.11"
     vite: "npm:^7.0.0"
     vite-plugin-pwa: "npm:^1.0.1"
+    vite-plugin-sitemap: "npm:^0.8.2"
     zod: "npm:^3.25.76"
   languageName: unknown
   linkType: soft
@@ -5898,6 +5899,13 @@ __metadata:
     "@vite-pwa/assets-generator":
       optional: true
   checksum: 10c0/ceca04df97877ca97eb30805207d4826bd6340796194c9015afeefeb781931bf9019a630c5a0bdaa6dffcada11ce1fdf8595ac48a08d751dff81601aa0c7db38
+  languageName: node
+  linkType: hard
+
+"vite-plugin-sitemap@npm:^0.8.2":
+  version: 0.8.2
+  resolution: "vite-plugin-sitemap@npm:0.8.2"
+  checksum: 10c0/d462fbf2f8099985f8768134481c6034e83d91fac2231a160581aca42922c743f7dbb7c8a7bfc11643401a59434ac874639c8c7ee7b3fc41a47cf23e815b555e
   languageName: node
   linkType: hard
 
