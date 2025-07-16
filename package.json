@@ -36,7 +36,8 @@
     "globals": "^16.2.0",
     "postcss": "^8.5.6",
     "vite": "^7.0.0",
-    "vite-plugin-pwa": "^1.0.1"
+    "vite-plugin-pwa": "^1.0.1",
+    "vite-plugin-sitemap": "^0.8.2"
   },
   "packageManager": "yarn@4.9.2"
 }
