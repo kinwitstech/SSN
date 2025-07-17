@@ -6,11 +6,12 @@ import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../../components/Button";
 import BrandingSetup from "./BrandingSetup";
 import { fullSchema, stepFieldsMap } from "./RegisterClinicSchema";
+import ClinicDetails from "./ClinicDetails";
 import SubscriptionPlans from "./SubscriptionPlans";
 
 // Step Components
 const steps = [
-  { title: "Branding", component: BrandingSetup },
+  {title: "Clinic Details", component: ClinicDetails }, { title: "Branding", component: BrandingSetup },
   { title: "Subscription", component: SubscriptionPlans },
 ];
 

@@ -18,15 +18,33 @@ const subscriptionPlanSchema = z.object({
   subscriptionPlan: z.string().min(1, "Please select a subscription plan"),
 });
 
+const clinicSchema = z.object({
+  clinicName: z.string().min(1, "Clinic name is required"),
+  adminName: z.string().min(1, "Admin name is required"),
+  email: z.string().email("Invalid email"),
+  phone: z.string().min(10, "Phone number is required"),
+  clinicAddress: z.string().min(1, "Clinic address is required"),
+  speciality: z.string().min(1, "Speciality is required"),
+  consultationFee: z
+    .string()
+    .min(1, "Fee is required")
+    .regex(/^\d+$/, "Fee must be a number"),
+  certificate: z
+    .any()
+    .refine((file) => file instanceof File || file?.length > 0, {
+      message: "Certificate is required",
+    }),
+  servicesProvided: z.array(z.string()).optional(),
+});
+
+
 export const fullSchema = clinicDetailsSchema
-  .merge(brandingSchema)
+  .merge(clinicSchema,brandingSchema)
   .merge(subscriptionPlanSchema);
 
 // 🧪 Fields to validate per step
 export const stepFieldsMap = {
-  0: ["clinicLogo"],
-  1: ["subscriptionPlan"],
-  2: [],
-  3: [],
-  4: [],
+  0: ["clinicName", "adminName", "email", "phone", "clinicAddress","speciality", "consultationFee", "certificate", "servicesProvided"],
+  1: ["clinicLogo"],
+  2: ["subscriptionPlan"],
 };
