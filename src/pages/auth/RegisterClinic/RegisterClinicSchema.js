@@ -24,14 +24,13 @@ const clinicSchema = z.object({
   email: z.string().email("Invalid email"),
   phone: z
   .string()
-  .min(10, "Phone number is required")
-  .regex(/^\d+$/, "Phone number must contain digits only"),
+  .regex(/^[0-9]{10}$/, "Phone number must contain 10 digits"),
   clinicAddress: z.string().min(1, "Clinic address is required"),
   speciality: z.string().min(1, "Speciality is required"),
   consultationFee: z
-    .string()
-    .min(1, "Fee is required")
-    .regex(/^\d+$/, "Fee must be a number"),
+  .string()
+  .min(1, "Fee is required")
+  .regex(/^\d+(\.\d{1,2})?$/, "Fee must be a valid number"),
   certificate: z
     .any()
     .refine((file) => {

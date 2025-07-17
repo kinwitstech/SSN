@@ -7,6 +7,19 @@ const services = ["Lab Work", "Medical Dispensary"];
 
 const ClinicDetails = () => {
   const { register, formState } = useFormContext();
+
+  const handleNumericInput = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g,"");
+  };
+  
+  const handleDecimalInput = (e) => {
+    let value=e.target.value.replace(/[^0-9.]/g,"");
+      const parts = value.split(".");
+      if(parts.length>2){
+        value=parts[0]+"."+parts.slice(1).join("");
+      }
+      e.target.value=value;
+  };
   const inputProps = { register, formState };
   return (
     <div className="px-4 py-6">
@@ -49,6 +62,7 @@ const ClinicDetails = () => {
             placeholder="Enter your Phone Number here"
             type="tel"
             required
+            onInput={handleNumericInput}
             {...inputProps}
           />
 
@@ -74,6 +88,7 @@ const ClinicDetails = () => {
             label="Consultation Fee"
             placeholder="Enter the Consultation Fee here"
             required
+            onInput={handleDecimalInput}
             {...inputProps}
           />
 
