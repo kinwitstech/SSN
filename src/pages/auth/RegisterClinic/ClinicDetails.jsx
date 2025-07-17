@@ -3,10 +3,10 @@ import { useFormContext } from "react-hook-form";
 import Input from "../../../components/InputField";
 import Textarea from "../../../components/TextareaField";
 
+const services = ["Lab Work", "Medical Dispensary"];
+
 const ClinicDetails = () => {
   const { register, formState } = useFormContext();
-
-  const services = ["Lab Work", "Medical Dispensary"];
 
   return (
     <div className="px-4 py-6">
@@ -17,60 +17,99 @@ const ClinicDetails = () => {
       </p>
 
       <div className="space-y-4">
-        {/* --- Input Fields --- */}
-        <Input
-          name="clinicName"
-          placeholder="Name of the Clinic*"
-          register={register}
-          formState={formState}
-        />
-        <Input
-          name="adminName"
-          placeholder="Admin’s Name*"
-          register={register}
-          formState={formState}
-        />
-        <Input
-          name="email"
-          type="email"
-          placeholder="Email Address*"
-          register={register}
-          formState={formState}
-        />
-        <Input
-          name="phone"
-          type="tel"
-          placeholder="Phone Number*"
-          register={register}
-          formState={formState}
-        />
+        {/* --- Input Fields with Labels --- */}
+        <div>
+          <label className="block text-sm font-medium text-textSecondary mb-1">
+            Clinic Name*
+          </label>
+          <Input
+            name="clinicName"
+            placeholder="Enter your Clinic Name here"
+            register={register}
+            formState={formState}
+          />
+        </div>
 
-        <Textarea
-          name="clinicAddress"
-          placeholder="Clinic Address*"
-          register={register}
-          formState={formState}
-          rows={3}
-        />
+        <div>
+          <label className="block text-sm font-medium text-textSecondary mb-1">
+            Admin Name*
+          </label>
+          <Input
+            name="adminName"
+            placeholder="Enter Admin Name here"
+            register={register}
+            formState={formState}
+          />
+        </div>
 
-        {/* --- Speciality Textbox --- */}
-        <Input
-          name="speciality"
-          placeholder="Speciality*"
-          register={register}
-          formState={formState}
-        />
+        <div>
+          <label className="block text-sm font-medium text-textSecondary mb-1">
+            Email*
+          </label>
+          <Input
+            name="email"
+            placeholder="Enter your Email ID here"
+            type="email"
+            register={register}
+            formState={formState}
+          />
+        </div>
 
-        {/* --- Consultation Fee --- */}
-        <Input
-          name="consultationFee"
-          placeholder="Patient Consultation Fee"
-          register={register}
-          formState={formState}
-        />
+        <div>
+          <label className="block text-sm font-medium text-textSecondary mb-1">
+            Phone Number*
+          </label>
+          <Input
+            name="phone"
+            placeholder="Enter your Phone Number here"
+            type="tel"
+            register={register}
+            formState={formState}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-textSecondary mb-1">
+            Clinic Address*
+          </label>
+          <Textarea
+            name="clinicAddress"
+            placeholder="Enter your Clinic Address here"
+            register={register}
+            formState={formState}
+            rows={3}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-textSecondary mb-1">
+            Speciality*
+          </label>
+          <Input
+            name="speciality"
+            placeholder="Enter your Speciality here"
+            register={register}
+            formState={formState}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-textSecondary mb-1">
+            Consultation Fee*
+          </label>
+          <Input
+            name="consultationFee"
+            placeholder="Enter the Consultation Fee here"
+            register={register}
+            formState={formState}
+          />
+        </div>
 
         {/* --- Certificate Upload --- */}
         <div>
+          <label className="block text-sm font-medium text-textSecondary mb-1">
+            Medical Registration Certificate*
+          </label>
           <input
             type="file"
             {...register("certificate")}
@@ -85,7 +124,9 @@ const ClinicDetails = () => {
 
         {/* --- Services Provided --- */}
         <div>
-          <p className="font-semibold text-textSecondary mb-2">Services Provided</p>
+          <p className="block text-sm font-medium text-textSecondary mb-2">
+            Services Provided*
+          </p>
           <div className="space-y-2">
             {services.map((service) => (
               <label key={service} className="flex items-center gap-2 text-textPrimary">
