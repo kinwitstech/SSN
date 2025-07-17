@@ -30,7 +30,7 @@ const Input = ({
       {label && (
         <label
           htmlFor={name}
-          className={twMerge("block mb-1 text-textPrimary", labelClassName)}
+          className={twMerge("block mb-1 text-textSecondary", labelClassName)}
         >
           {label}
         </label>

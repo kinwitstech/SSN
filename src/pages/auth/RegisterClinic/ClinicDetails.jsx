@@ -17,13 +17,10 @@ const ClinicDetails = () => {
       </p>
 
       <div className="space-y-4">
-        {/* --- Input Fields with Labels --- */}
         <div>
-          <label className="block text-sm font-medium text-textSecondary mb-1">
-            Clinic Name*
-          </label>
           <Input
             name="clinicName"
+            label="Clinic Name*"
             placeholder="Enter your Clinic Name here"
             register={register}
             formState={formState}
@@ -31,11 +28,9 @@ const ClinicDetails = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-textSecondary mb-1">
-            Admin Name*
-          </label>
           <Input
             name="adminName"
+            label="Admin Name*"
             placeholder="Enter Admin Name here"
             register={register}
             formState={formState}
@@ -43,11 +38,9 @@ const ClinicDetails = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-textSecondary mb-1">
-            Email*
-          </label>
           <Input
             name="email"
+            label="Email*"
             placeholder="Enter your Email ID here"
             type="email"
             register={register}
@@ -56,11 +49,9 @@ const ClinicDetails = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-textSecondary mb-1">
-            Phone Number*
-          </label>
           <Input
             name="phone"
+            label="Phone*"
             placeholder="Enter your Phone Number here"
             type="tel"
             register={register}
@@ -69,11 +60,9 @@ const ClinicDetails = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-textSecondary mb-1">
-            Clinic Address*
-          </label>
           <Textarea
             name="clinicAddress"
+            label="Clinic Address*"
             placeholder="Enter your Clinic Address here"
             register={register}
             formState={formState}
@@ -82,11 +71,9 @@ const ClinicDetails = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-textSecondary mb-1">
-            Speciality*
-          </label>
           <Input
             name="speciality"
+            label="Speciality*"
             placeholder="Enter your Speciality here"
             register={register}
             formState={formState}
@@ -94,11 +81,10 @@ const ClinicDetails = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-textSecondary mb-1">
-            Consultation Fee*
-          </label>
+          
           <Input
             name="consultationFee"
+            label="Consultation Fee*"
             placeholder="Enter the Consultation Fee here"
             register={register}
             formState={formState}
@@ -107,7 +93,7 @@ const ClinicDetails = () => {
 
         {/* --- Certificate Upload --- */}
         <div>
-          <label className="block text-sm font-medium text-textSecondary mb-1">
+          <label className="block text-textSecondary mb-1">
             Medical Registration Certificate*
           </label>
           <input
@@ -124,9 +110,9 @@ const ClinicDetails = () => {
 
         {/* --- Services Provided --- */}
         <div>
-          <p className="block text-sm font-medium text-textSecondary mb-2">
+          <label className="block text-textSecondary mb-1">
             Services Provided*
-          </p>
+          </label>
           <div className="space-y-2">
             {services.map((service) => (
               <label key={service} className="flex items-center gap-2">
