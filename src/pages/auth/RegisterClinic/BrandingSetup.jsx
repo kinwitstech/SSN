@@ -62,7 +62,9 @@ export default function BrandingSetup() {
   return (
     <div className="space-y-6">
       <h1 className="mb-2">Branding Setup</h1>
-      <p>Customize your clinic's appearance for patients</p>
+      <p className="text-textSecondary">
+        Customize your clinic's appearance for patients
+      </p>
       {/* Upload Logo */}
       <div className="flex md:flex-row items-center gap-4 mb-2">
         <div className="w-32 h-32 bg-blue-50 flex-center rounded overflow-hidden self-center md:self-auto">

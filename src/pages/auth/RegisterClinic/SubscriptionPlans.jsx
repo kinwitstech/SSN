@@ -42,10 +42,10 @@ export default function SubscriptionPlans() {
   return (
     <div className="space-y-4">
       <h1 className="mb-2">Subscription</h1>
-      <p>Select a plan that fits your needs</p>
+      <p className="text-textSecondary">Select a plan that fits your needs</p>
       <>
         {errors.subscriptionPlan && (
-          <p className="text-red-500 text-sm">
+          <p className="text-error text-xs">
             Please select a subscription plan!
           </p>
         )}
@@ -56,7 +56,7 @@ export default function SubscriptionPlans() {
               key={plan.id}
               onClick={() => onHandleSelect(plan.id)}
               className={`cursor-pointer border rounded-lg p-4 transition gap-y-4 ${
-                isSelected ? "border-primary shadow" : "border-gray-300"
+                isSelected ? "border-primary shadow" : "border-neutral-light"
               }`}
             >
               <div className="flex items-center mb-2">
@@ -74,7 +74,7 @@ export default function SubscriptionPlans() {
               <ul className="space-y-1 text-sm">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex gap-2 items-start">
-                    <span className="w-2 h-2 mt-2 bg-green-500 rounded-full shrink-0" />
+                    <span className="w-2 h-2 mt-2 bg-success rounded-full shrink-0" />
                     <span>{feature}</span>
                   </li>
                 ))}

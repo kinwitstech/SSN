@@ -7,8 +7,8 @@ const ClinicSetupSuccess = () => {
       <div className="flex mb-10">
         <SparklesIcon className="w-32 h-32 text-primary mb-6" />
       </div>
-      <div className="bg-green-100 text-gray-700 rounded-lg p-5 w-full max-w-md flex items-start gap-3 mb-10">
-        <CheckCircleIcon className="h-6 w-6 text-green-500 mt-1" />
+      <div className="bg-green-100 rounded-lg p-5 w-full max-w-md flex items-start gap-3 mb-10">
+        <CheckCircleIcon className="h-6 w-6 text-success mt-1" />
         <div>
           <p className="font-semibold">Clinic Setup is successful</p>
           <p className="text-sm">Login to complete full setup</p>
