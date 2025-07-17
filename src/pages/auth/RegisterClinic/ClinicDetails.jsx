@@ -7,11 +7,11 @@ const services = ["Lab Work", "Medical Dispensary"];
 
 const ClinicDetails = () => {
   const { register, formState } = useFormContext();
-
+  const inputProps = { register, formState };
   return (
     <div className="px-4 py-6">
       {/* --- Header --- */}
-      <h2 className="text-2xl font-bold mb-1">Clinic Details</h2>
+      <h2>Clinic Details</h2>
       <p className="text-base text-textSecondary mb-6">
         Let’s start by setting up your clinic’s information
       </p>
@@ -20,52 +20,52 @@ const ClinicDetails = () => {
         <div>
           <Input
             name="clinicName"
-            label="Clinic Name*"
+            label="Clinic Name"
             placeholder="Enter your Clinic Name here"
-            register={register}
-            formState={formState}
+            required
+            {...inputProps}
           />
         </div>
 
         <div>
           <Input
             name="adminName"
-            label="Admin Name*"
+            label="Admin Name"
             placeholder="Enter Admin Name here"
-            register={register}
-            formState={formState}
+            required
+            {...inputProps}
           />
         </div>
 
         <div>
           <Input
             name="email"
-            label="Email*"
+            label="Email"
             placeholder="Enter your Email ID here"
             type="email"
-            register={register}
-            formState={formState}
+            required
+            {...inputProps}
           />
         </div>
 
         <div>
           <Input
             name="phone"
-            label="Phone*"
+            label="Phone"
             placeholder="Enter your Phone Number here"
             type="tel"
-            register={register}
-            formState={formState}
+            required
+            {...inputProps}
           />
         </div>
 
         <div>
           <Textarea
             name="clinicAddress"
-            label="Clinic Address*"
+            label="Clinic Address"
             placeholder="Enter your Clinic Address here"
-            register={register}
-            formState={formState}
+            required
+            {...inputProps}
             rows={3}
           />
         </div>
@@ -73,10 +73,10 @@ const ClinicDetails = () => {
         <div>
           <Input
             name="speciality"
-            label="Speciality*"
+            label="Speciality"
             placeholder="Enter your Speciality here"
-            register={register}
-            formState={formState}
+            required
+            {...inputProps}
           />
         </div>
 
@@ -84,17 +84,18 @@ const ClinicDetails = () => {
           
           <Input
             name="consultationFee"
-            label="Consultation Fee*"
+            label="Consultation Fee"
             placeholder="Enter the Consultation Fee here"
-            register={register}
-            formState={formState}
+            required
+            {...inputProps}
           />
         </div>
 
         {/* --- Certificate Upload --- */}
         <div>
           <label className="block text-textSecondary mb-1">
-            Medical Registration Certificate*
+            Medical Registration Certificate
+            <span className="text-error">  *</span>
           </label>
           <input
             type="file"
@@ -111,8 +112,10 @@ const ClinicDetails = () => {
         {/* --- Services Provided --- */}
         <div>
           <label className="block text-textSecondary mb-1">
-            Services Provided*
+            Services Provided
+            <span className="text-error"> *</span>
           </label>
+
           <div className="space-y-2">
             {services.map((service) => (
               <label key={service} className="flex items-center gap-2">

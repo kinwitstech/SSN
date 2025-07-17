@@ -19,6 +19,7 @@ const Textarea = ({
   rows,
   autoExpand,
   onInput,
+  required,
   ...rest
 }) => {
   const error = formState?.errors?.[name]?.message;
@@ -41,8 +42,9 @@ const Textarea = ({
   return (
     <div className="w-full mb-6">
       {label && (
-        <label htmlFor={name} className={twMerge("block mb-1", labelClassName)}>
+        <label htmlFor={name} className={twMerge("block mb-1 text-textSecondary", labelClassName)}>
           {label}
+          {required && <span className="text-error ml-1">*</span>}
         </label>
       )}
       <div
@@ -100,6 +102,7 @@ Textarea.propTypes = {
   autoExpand: PropTypes.bool,
   onChange: PropTypes.func,
   onInput: PropTypes.func,
+  required: PropTypes.bool,
 };
 
 Textarea.defaultProps = {
@@ -114,6 +117,7 @@ Textarea.defaultProps = {
   autoExpand: false,
   onChange: () => {},
   onInput: () => {},
+  required: false,
 };
 
 export default Textarea;

@@ -21,6 +21,7 @@ const Input = ({
   rightIconClassName,
   rules,
   type,
+  required,
   ...rest
 }) => {
   const error = formState?.errors?.[name]?.message;
@@ -33,6 +34,7 @@ const Input = ({
           className={twMerge("block mb-1 text-textSecondary", labelClassName)}
         >
           {label}
+          {required && <span className="text-error ml-1">*</span>}
         </label>
       )}
       <div
@@ -111,6 +113,7 @@ Input.propTypes = {
   rightIconClassName: PropTypes.string,
   rules: PropTypes.object,
   type: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -128,6 +131,7 @@ Input.defaultProps = {
   type: "text",
   onChange: () => {},
   onInput: () => {},
+  required: false,
 };
 
 export default Input;
