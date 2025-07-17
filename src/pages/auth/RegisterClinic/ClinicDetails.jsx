@@ -11,8 +11,8 @@ const ClinicDetails = () => {
   return (
     <div className="px-4 py-6">
       {/* --- Header --- */}
-      <h2 className="text-2xl font-bold text-textPrimary mb-1">Clinic Details</h2>
-      <p className="text-base text-textHint mb-6">
+      <h2 className="text-2xl font-bold mb-1">Clinic Details</h2>
+      <p className="text-base text-textSecondary mb-6">
         Let’s start by setting up your clinic’s information
       </p>
 
@@ -116,7 +116,7 @@ const ClinicDetails = () => {
             className="w-full px-4 py-2 border border-neutral-light rounded-xl text-textHint file:bg-primary file:text-white file:rounded-md file:px-3 file:py-1"
           />
           {formState.errors.certificate && (
-            <p className="text-error text-sm mt-1">
+            <p className="text-error text-xs mt-1">
               {formState.errors.certificate.message}
             </p>
           )}
@@ -129,7 +129,7 @@ const ClinicDetails = () => {
           </p>
           <div className="space-y-2">
             {services.map((service) => (
-              <label key={service} className="flex items-center gap-2 text-textPrimary">
+              <label key={service} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   value={service}
