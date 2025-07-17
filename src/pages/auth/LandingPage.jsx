@@ -25,7 +25,7 @@ const LandingPage = () => {
           <br />
           Anywhere.
         </h1>
-        <p className="mb-6 max-w-sm">
+        <p className="mb-6 max-w-sm text-textSecondary">
           Built for clinics and doctors to bring quality healthcare to every
           patient.
         </p>
