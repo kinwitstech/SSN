@@ -2,18 +2,20 @@ import { PhotoIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { Controller, useFormContext } from "react-hook-form";
+import Textarea from "../../../components/TextareaField";
 
 const acceptedTypes = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
 
 export default function BrandingSetup() {
   const {
-    register,
     control,
     setValue,
     watch,
     trigger,
     setError,
     clearErrors,
+    register,
+    formState,
     formState: { errors },
   } = useFormContext();
   const selectedColor = watch("clinicPrimaryColor") || "#0190CC";
@@ -92,17 +94,21 @@ export default function BrandingSetup() {
           </label>
 
           {selectedLogo && typeof selectedLogo === "object" && (
-            <p className="text-sm text-gray-500 mt-1">{selectedLogo.name}</p>
+            <p className="text-sm text-neutral-dark mt-1">
+              {selectedLogo.name}
+            </p>
           )}
         </div>
       </div>
       {errors?.clinicLogo && (
-        <p className="text-red-500 text-sm mb-0">{errors.clinicLogo.message}</p>
+        <p className="text-error text-xs mb-0">{errors.clinicLogo.message}</p>
       )}
 
       {/* Color Picker */}
       <div className="mt-6">
-        <p className="font-semibold mb-1 block">Pick your primary color</p>
+        <label htmlFor="primaryColorSelection" className="mb-1 block">
+          Pick your primary color
+        </label>
         <div className="flex gap-4">
           <Controller
             id="primaryColorSelection"
@@ -123,17 +129,14 @@ export default function BrandingSetup() {
       </div>
 
       {/* Tagline */}
-      <div>
-        <textarea
-          {...register("clinicTagline")}
-          placeholder="Clinic Tagline / Description"
-          className="w-full border p-3 rounded resize-none"
-          rows={5}
-        />
-        {errors.clinicTagline && (
-          <p className="text-red-500 text-sm">Please enter a tag line!</p>
-        )}
-      </div>
+      <Textarea
+        name="clinicTagline"
+        label="Clinic Tagline"
+        placeholder="Enter your clinic's tagline"
+        rows={3}
+        register={register}
+        formState={formState}
+      />
     </div>
   );
 }

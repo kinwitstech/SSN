@@ -3,54 +3,93 @@
 @theme {
   --color-primary: #0190cc;
   --color-primary-dark: #0086c1;
-}
+  --color-secondary: #6c757d;
+  --color-secondary-dark: #5a6268;
+  --color-success: #28a745;
+  --color-success-dark: #218838;
+  --color-warning: #ffc107;
+  --color-warning-dark: #e0a800;
+  --color-error: #dc3545;
+  --color-error-dark: #c82333;
+  --color-info: #17a2b8;
+  --color-info-dark: #138496;
+  --color-light: #f8f9fa;
+  --color-dark: #343a40;
+  --color-textPrimary: #1e2939;
+  --color-textSecondary: #2e4470;
+  --color-textHint: #B4B4B4;
+  --color-neutral-light: #C5C6CC;
+  --color-neutral-dark: #8F9098;
 
-html,
-body,
-#root {
-  height: 100%;
+  --default-font-family: "Inter", system-ui, sans-serif;
 }
 
 @layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    font-size: 16px;
+    @apply text-textPrimary;
+  }
+
+  p,
+  label {
+    font-size: clamp(1rem, 2.5vw, 1.125rem); /* ~16px to 18px */
+    @apply leading-relaxed tracking-normal;
+  }
+
   button {
     @apply transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
 
   h1 {
     font-size: clamp(1.75rem, 5vw, 2.5rem); /* ~28px to 40px */
-    @apply font-bold leading-tight text-gray-900;
+    @apply font-bold text-textPrimary
+      leading-snug sm:leading-tight lg:leading-[1.2]  /* line-height adjustments */
+      tracking-wide sm:tracking-wider; /* letter-spacing adjustments */
   }
 
   h2 {
     font-size: clamp(1.5rem, 4.5vw, 2rem); /* ~24px to 32px */
-    @apply font-semibold leading-snug text-gray-800;
+    @apply font-semibold text-textPrimary
+      leading-snug sm:leading-tight lg:leading-[1.3]
+      tracking-wide sm:tracking-wider;
   }
 
   h3 {
     font-size: clamp(1.25rem, 4vw, 1.75rem); /* ~20px to 28px */
-    @apply font-semibold leading-snug text-gray-800;
+    @apply font-semibold text-textPrimary
+      leading-snug sm:leading-[1.4] lg:leading-[1.3]
+      tracking-normal sm:tracking-wide;
   }
 
   h4 {
     font-size: clamp(1.125rem, 3.5vw, 1.5rem); /* ~18px to 24px */
-    @apply font-medium text-gray-800;
+    @apply font-medium text-textPrimary
+      leading-normal sm:leading-snug lg:leading-[1.4]
+      tracking-normal sm:tracking-wide;
   }
 
   h5 {
     font-size: clamp(1rem, 3vw, 1.25rem); /* ~16px to 20px */
-    @apply font-medium text-gray-700;
+    @apply font-medium text-textSecondary
+      leading-normal sm:leading-snug
+      tracking-tight sm:tracking-normal;
   }
 
   h6 {
     font-size: clamp(0.875rem, 2.5vw, 1rem); /* ~14px to 16px */
-    @apply font-medium text-gray-700;
+    @apply font-medium text-textSecondary
+      leading-normal sm:leading-snug
+      tracking-tight;
   }
 
-  p,
-  label,
-  body {
-    font-size: clamp(1rem, 2.5vw, 1.125rem); /* ~16px to 18px */
-    @apply text-gray-700 leading-relaxed;
+  input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: text-textPrimary !important;
+    transition: background-color 9999s ease-out, color 9999s ease-out;  
   }
 }
 
