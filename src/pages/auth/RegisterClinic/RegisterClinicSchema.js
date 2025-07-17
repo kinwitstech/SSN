@@ -14,12 +14,18 @@ const brandingSchema = z.object({
     .max(200, "Tagline is too long"),
 });
 
-export const fullSchema = clinicDetailsSchema.merge(brandingSchema);
+const subscriptionPlanSchema = z.object({
+  subscriptionPlan: z.string().min(1, "Please select a subscription plan"),
+});
+
+export const fullSchema = clinicDetailsSchema
+  .merge(brandingSchema)
+  .merge(subscriptionPlanSchema);
 
 // 🧪 Fields to validate per step
 export const stepFieldsMap = {
   0: ["clinicLogo"],
-  1: [],
+  1: ["subscriptionPlan"],
   2: [],
   3: [],
   4: [],
