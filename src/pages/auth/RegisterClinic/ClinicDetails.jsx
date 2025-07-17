@@ -17,7 +17,6 @@ const ClinicDetails = () => {
       </p>
 
       <div className="space-y-4">
-        <div>
           <Input
             name="clinicName"
             label="Clinic Name"
@@ -25,9 +24,8 @@ const ClinicDetails = () => {
             required
             {...inputProps}
           />
-        </div>
 
-        <div>
+
           <Input
             name="adminName"
             label="Admin Name"
@@ -35,9 +33,7 @@ const ClinicDetails = () => {
             required
             {...inputProps}
           />
-        </div>
 
-        <div>
           <Input
             name="email"
             label="Email"
@@ -46,9 +42,7 @@ const ClinicDetails = () => {
             required
             {...inputProps}
           />
-        </div>
 
-        <div>
           <Input
             name="phone"
             label="Phone"
@@ -57,9 +51,7 @@ const ClinicDetails = () => {
             required
             {...inputProps}
           />
-        </div>
 
-        <div>
           <Textarea
             name="clinicAddress"
             label="Clinic Address"
@@ -68,9 +60,7 @@ const ClinicDetails = () => {
             {...inputProps}
             rows={3}
           />
-        </div>
 
-        <div>
           <Input
             name="speciality"
             label="Speciality"
@@ -78,10 +68,7 @@ const ClinicDetails = () => {
             required
             {...inputProps}
           />
-        </div>
 
-        <div>
-          
           <Input
             name="consultationFee"
             label="Consultation Fee"
@@ -89,7 +76,6 @@ const ClinicDetails = () => {
             required
             {...inputProps}
           />
-        </div>
 
         {/* --- Certificate Upload --- */}
         <div>
@@ -99,6 +85,7 @@ const ClinicDetails = () => {
           </label>
           <input
             type="file"
+            accept=".pdf,image/*"
             {...register("certificate")}
             className="w-full px-4 py-2 border border-neutral-light rounded-xl text-textHint file:bg-primary file:text-white file:rounded-md file:px-3 file:py-1"
           />
