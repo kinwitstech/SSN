@@ -5,18 +5,18 @@ import { useForm } from "react-hook-form";
 import ssnLogo from "../../assets/ssn-logo.png";
 import BackArrowButton from "../../components/BackArrowButton";
 import Button from "../../components/Button";
+import Input from "../../components/InputField";
 
 const Login = () => {
   const navigate = useNavigate();
   const [phoneValue, setPhoneValue] = useState("");
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    getValues,
-    formState: { errors, isValid },
-  } = useForm();
+  const { register, handleSubmit, setValue, getValues, formState } = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      phone: "",
+    },
+  });
 
   const onSubmit = (data) => {
     console.log("Phone submitted:", data.phone);
@@ -44,48 +44,62 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col items-center w-full max-w-sm space-y-6"
       >
-        <img src={ssnLogo || ""} alt="SSN Logo" className="w-20 h-20 mx-auto" />
+        <img
+          src={ssnLogo || ""}
+          alt="SSN Logo"
+          className="w-20 h-20 mx-auto"
+          loading="lazy"
+        />
 
-        <h2 className="text-2xl font-bold text-center w-full">Login</h2>
+        <h1 className="text-center w-full mb-4">Login</h1>
 
-        <p className="text-gray-600 text-sm text-center w-full">
+        <p className="text-textSecondary text-center w-full">
           Please provide your mobile number to login.
         </p>
 
-        <div className="w-full">
-          <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2">
-            <PhoneIcon className="h-5 w-5 text-blue-500 mr-4" />
-            <span className="text-gray-500">+91 |</span>
-            <input
-              type="tel"
-              inputMode="numeric"
-              maxLength={10}
-              {...register("phone", {
-                pattern: {
-                  value: /^[0-9]{10}$/,
-                  message: "Phone number must be 10 digits",
-                },
-              })}
-              onInput={handleInputChange}
-              placeholder="Enter Phone Number"
-              className="flex-1 outline-none pl-2 text-sm text-gray-700"
-            />
-            {phoneValue.length > 0 && phoneValue.length < 10 && (
+        <Input
+          name="phone"
+          type="tel"
+          inputMode="numeric"
+          maxLength={10}
+          placeholder="Enter Phone Number"
+          rules={{
+            required: "Phone number is required",
+            pattern: {
+              value: /^[0-9]{10}$/,
+              message: "Phone number must be 10 digits",
+            },
+          }}
+          className="rounded-xl"
+          leftIcon={
+            <>
+              <PhoneIcon className="h-5 w-5 text-primary mr-1" />
+              <span className="flex items-center text-neutral-dark mr-1 space-x-2">
+                <span>+91</span>
+                <span className="inline-block w-px h-6 bg-current" />
+              </span>
+            </>
+          }
+          leftIconClassName={"flex items-center text-neutral-dark"}
+          rightIcon={
+            phoneValue.length > 0 &&
+            phoneValue.length < 10 && (
               <XMarkIcon
-                className="h-4 w-4 text-gray-400 cursor-pointer ml-2"
+                className="h-4 w-4 text-textSecondary cursor-pointer ml-2"
                 onClick={clearInput}
               />
-            )}
-          </div>
-          {errors.phone && (
-            <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
-          )}
-        </div>
+            )
+          }
+          onInput={handleInputChange}
+          register={register}
+          formState={formState}
+        />
 
         <Button
           text="Get OTP"
           type="submit"
-          disabled={!isValid || phoneValue.length < 10}
+          disabled={phoneValue.length !== 10}
+          className="mt-2"
         />
       </form>
     </div>
