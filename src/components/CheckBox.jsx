@@ -1,73 +1,76 @@
 import PropTypes from "prop-types";
 import { useFormContext, Controller } from "react-hook-form";
 
-const CheckBox = ({ 
-    name, 
-    options, 
-    label, 
-    requiredMessage,
-}) => {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext();
+const CheckBox = ({ name, options, label, requiredMessage, required }) => {
+	const {
+		control,
+		formState: { errors },
+	} = useFormContext();
 
-  return (
-    <div className="w-full mb-6">
-      {label && (
-        <label className="block text-textSecondary mb-1">
-          {label}
-          <span className="text-error ml-1">*</span>
-        </label>
-      )}
+	return (
+		<div className='w-full mb-6'>
+			{label && (
+				<label htmlFor={`${name}-0`} className='block text-textSecondary mb-1'>
+					{label}
+					{required && <span className='text-error ml-1'>*</span>}
+				</label>
+			)}
 
-      <Controller
-        name={name}
-        control={control}
-        rules={{
-          validate: (value) =>
-            value?.length > 0 || requiredMessage || "Please select an option",
-        }}
-        render={({ field }) => (
-          <div className="space-y-2">
-            {options.map((option) => (
-              <label key={option} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  value={option}
-                  checked={field.value?.includes(option) || false}
-                  onChange={(e) => {
-                    const newValue = e.target.checked
-                      ? [...(field.value || []), option]
-                      : (field.value || []).filter((v) => v !== option);
-                    field.onChange(newValue);
-                  }}
-                  className="accent-primary"
-                />
-                {option}
-              </label>
-            ))}
-          </div>
-        )}
-      />
+			<Controller
+				name={name}
+				control={control}
+				rules={{
+					validate: (value) =>
+						!required || value?.length > 0 || requiredMessage,
+				}}
+				render={({ field }) => (
+					<div className='space-y-2'>
+						{options.map((option, index) => {
+							const optionId = `${name}-${index}`;
+							const checked = field.value?.includes(option) || false;
 
-      {errors[name] && (
-        <p className="text-error text-xs mt-1">{errors[name].message}</p>
-      )}
-    </div>
-  );
+							return (
+								<div key={option} className='flex items-center gap-2'>
+									<input
+										id={optionId}
+										type='checkbox'
+										value={option}
+										checked={checked}
+										onChange={(e) => {
+											const newValue = e.target.checked
+												? [...(field.value || []), option]
+												: (field.value || []).filter((v) => v !== option);
+											field.onChange(newValue);
+										}}
+										className='accent-primary ml-4'
+									/>
+									<label htmlFor={optionId}>{option}</label>
+								</div>
+							);
+						})}
+					</div>
+				)}
+			/>
+
+			{errors?.[name]?.message && (
+				<p className='text-error text-xs mt-1'>{errors[name].message}</p>
+			)}
+		</div>
+	);
 };
 
 CheckBox.propTypes = {
-  name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  label: PropTypes.string,
-  requiredMessage: PropTypes.string,
+	name: PropTypes.string.isRequired,
+	options: PropTypes.arrayOf(PropTypes.string).isRequired,
+	label: PropTypes.string,
+	requiredMessage: PropTypes.string,
+	required: PropTypes.bool,
 };
 
 CheckBox.defaultProps = {
-  label: "",
-  requiredMessage: "Please select an option",
+	label: "",
+	requiredMessage: "Please select an option",
+	required: false,
 };
 
 export default CheckBox;

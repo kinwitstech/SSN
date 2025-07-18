@@ -186,6 +186,7 @@ const ClinicDetails = () => {
 					name='servicesProvided'
 					label='Services Provided'
 					options={["Lab Work", "Medical Dispensary"]}
+          required
 				/>
 			</div>
 		</div>
