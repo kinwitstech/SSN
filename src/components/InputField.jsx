@@ -21,6 +21,7 @@ const Input = ({
   rightIconClassName,
   rules,
   type,
+  required,
   ...rest
 }) => {
   const error = formState?.errors?.[name]?.message;
@@ -30,17 +31,16 @@ const Input = ({
       {label && (
         <label
           htmlFor={name}
-          className={twMerge("block mb-1 text-textPrimary", labelClassName)}
+          className={twMerge("block mb-1 text-textSecondary", labelClassName)}
         >
           {label}
+          {required && <span className="text-error ml-1">*</span>}
         </label>
       )}
       <div
         className={twMerge(
           "flex items-center border border-neutral-light rounded px-3 py-3 bg-white",
-          error
-            ? "border-error"
-            : "focus-within:ring-2 focus-within:ring-primary",
+          error ? "border-error" : "focus-within:border-primary",
           className
         )}
       >
@@ -111,6 +111,7 @@ Input.propTypes = {
   rightIconClassName: PropTypes.string,
   rules: PropTypes.object,
   type: PropTypes.string,
+  required: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -128,6 +129,7 @@ Input.defaultProps = {
   type: "text",
   onChange: () => {},
   onInput: () => {},
+  required: false,
 };
 
 export default Input;

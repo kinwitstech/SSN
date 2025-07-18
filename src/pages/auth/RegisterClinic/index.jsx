@@ -6,10 +6,12 @@ import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../../components/Button";
 import BrandingSetup from "./BrandingSetup";
 import { fullSchema, stepFieldsMap } from "./RegisterClinicSchema";
+import ClinicDetails from "./ClinicDetails";
 import SubscriptionPlans from "./SubscriptionPlans";
 
 // Step Components
 const steps = [
+  { title: "Clinic Details", component: ClinicDetails },
   { title: "Branding", component: BrandingSetup },
   { title: "Subscription", component: SubscriptionPlans },
 ];
@@ -25,6 +27,7 @@ const RegisterClinic = () => {
     defaultValues: {
       clinicLogo: undefined,
       subscriptionPlan: "",
+      servicesProvided: [],
     },
   });
 
@@ -85,8 +88,8 @@ const RegisterClinic = () => {
                   index === stepIndex
                     ? "bg-primary"
                     : index < stepIndex
-                    ? "bg-[#B4DBFF] text-primary-dark"
-                    : "bg-gray-300 text-black"
+                      ? "bg-[#B4DBFF] text-primary-dark"
+                      : "bg-gray-300 text-black"
                 }`}
               >
                 {index < stepIndex ? (
