@@ -47,7 +47,7 @@ const Textarea = ({
           {required && <span className="text-error ml-1">*</span>}
         </label>
       )}
-      <div
+      <div 
         className={twMerge(
           "flex items-start border border-neutral-light rounded bg-white",
           error ? "border-error" : "",
@@ -72,7 +72,7 @@ const Textarea = ({
             onInput?.(e);
           }}
           {...rest}
-          className="w-full p-3"
+          className="w-full p-3 outline-none rounded focus:ring-1 focus:ring-primary focus:border-primary"
           aria-invalid={!!error}
           aria-describedby={`${name}-error`}
         />

@@ -40,9 +40,7 @@ const Input = ({
       <div
         className={twMerge(
           'flex items-center border border-neutral-light rounded px-3 py-3 bg-white',
-          error
-            ? 'border-error'
-            : 'focus-within:ring-2 focus-within:ring-primary',
+          error ? 'border-error' : 'focus-within:border-primary',
           className
         )}
       >

@@ -57,9 +57,17 @@ export const fullSchema = clinicDetailsSchema
 
 // 🧪 Step-wise fields to validate
 export const stepFieldsMap = {
-  0: ['certificate', 'servicesProvided'],
+  0: [
+    'clinicName',
+    'adminName',
+    'email',
+    'phone',
+    'clinicAddress',
+    'speciality',
+    'consultationFee',
+    'certificate',
+    'servicesProvided',
+  ],
   1: ['clinicLogo', 'clinicPrimaryColor', 'clinicTagline'],
   2: ['subscriptionPlan'],
 };
-
-//"clinicName","adminName","email","phone", "clinicAddress","speciality","consultationFee",
