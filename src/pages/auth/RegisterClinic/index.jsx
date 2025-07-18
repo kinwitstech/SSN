@@ -1,19 +1,19 @@
-import { CheckIcon } from '@heroicons/react/24/outline';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate } from '@tanstack/react-router';
-import { useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import Button from '../../../components/Button';
-import BrandingSetup from './BrandingSetup';
-import { fullSchema, stepFieldsMap } from './RegisterClinicSchema';
-import ClinicDetails from './ClinicDetails';
-import SubscriptionPlans from './SubscriptionPlans';
+import { CheckIcon } from "@heroicons/react/24/outline";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import Button from "../../../components/Button";
+import BrandingSetup from "./BrandingSetup";
+import { fullSchema, stepFieldsMap } from "./RegisterClinicSchema";
+import ClinicDetails from "./ClinicDetails";
+import SubscriptionPlans from "./SubscriptionPlans";
 
 // Step Components
 const steps = [
-  { title: 'Clinic Details', component: ClinicDetails },
-  { title: 'Branding', component: BrandingSetup },
-  { title: 'Subscription', component: SubscriptionPlans },
+  { title: "Clinic Details", component: ClinicDetails },
+  { title: "Branding", component: BrandingSetup },
+  { title: "Subscription", component: SubscriptionPlans },
 ];
 
 const RegisterClinic = () => {
@@ -23,10 +23,10 @@ const RegisterClinic = () => {
 
   const methods = useForm({
     resolver: zodResolver(fullSchema),
-    mode: 'onBlur',
+    mode: "onBlur",
     defaultValues: {
       clinicLogo: undefined,
-      subscriptionPlan: '',
+      subscriptionPlan: "",
       servicesProvided: [],
     },
   });
@@ -50,8 +50,8 @@ const RegisterClinic = () => {
   };
 
   const onSubmit = (data) => {
-    console.log('🚀 ~ onSubmit ~ data:', data);
-    navigate({ to: '/registerClinic/success' });
+    console.log("🚀 ~ onSubmit ~ data:", data);
+    navigate({ to: "/registerClinic/success" });
   };
 
   const onHandleClick = async () => {
@@ -66,7 +66,7 @@ const RegisterClinic = () => {
 
   const handlePrevious = () => {
     if (stepIndex === 0) {
-      navigate({ to: '/' });
+      navigate({ to: "/" });
       return;
     }
     setStepIndex((prev) => prev - 1);
@@ -74,69 +74,69 @@ const RegisterClinic = () => {
 
   return (
     <FormProvider {...methods}>
-      <div className='h-screen flex flex-col max-w-xl mx-auto p-6'>
+      <div className="h-screen flex flex-col max-w-xl mx-auto p-6">
         {/* Step Indicator */}
-        <div className='flex justify-between mb-6 pt-4'>
+        <div className="flex justify-between mb-6 pt-4">
           {steps.map((step, index) => (
             <div
               key={step.title}
               onClick={() => onHandleStepperClick(index)}
-              className='flex-1 text-center cursor-pointer'
+              className="flex-1 text-center cursor-pointer"
             >
               <div
                 className={`w-8 h-8 mx-auto rounded-full text-white flex-center ${
                   index === stepIndex
-                    ? 'bg-primary'
+                    ? "bg-primary"
                     : index < stepIndex
-                    ? 'bg-[#B4DBFF] text-primary-dark'
-                    : 'bg-gray-300 text-black'
+                      ? "bg-[#B4DBFF] text-primary-dark"
+                      : "bg-gray-300 text-black"
                 }`}
               >
                 {index < stepIndex ? (
                   <CheckIcon
-                    className='w-8 h-4 text-primary-dark'
+                    className="w-8 h-4 text-primary-dark"
                     strokeWidth={4}
                   />
                 ) : (
                   <span>{index + 1}</span>
                 )}
               </div>
-              <p className='text-sm mt-1'>{step.title}</p>
+              <p className="text-sm mt-1">{step.title}</p>
             </div>
           ))}
         </div>
 
         {/* Scrollable Form Content */}
-        <div className='flex-grow overflow-y-auto pr-1'>
+        <div className="flex-grow overflow-y-auto pr-1">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               onHandleClick();
             }}
-            className='space-y-4'
+            className="space-y-4"
           >
             <StepComponent />
           </form>
         </div>
 
-        <div className='mt-6 mb-6'>
-          <div className='flex justify-between'>
-            <div className='w-50 mr-2'>
+        <div className="mt-6 mb-6">
+          <div className="flex justify-between">
+            <div className="w-50 mr-2">
               <Button
-                text='Previous'
-                variant='outlined'
-                type='button'
+                text="Previous"
+                variant="outlined"
+                type="button"
                 onClick={handlePrevious}
               />
             </div>
-            <div className='w-50 ml-2'>
+            <div className="w-50 ml-2">
               <Button
                 text={
                   stepIndex === steps.length - 1
-                    ? 'Submit'
+                    ? "Submit"
                     : steps[stepIndex + 1]?.title
                 }
-                type='submit'
+                type="submit"
                 onClick={onHandleClick}
               />
             </div>

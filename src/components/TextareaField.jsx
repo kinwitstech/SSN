@@ -42,12 +42,15 @@ const Textarea = ({
   return (
     <div className="w-full mb-6">
       {label && (
-        <label htmlFor={name} className={twMerge("block mb-1 text-textSecondary", labelClassName)}>
+        <label
+          htmlFor={name}
+          className={twMerge("block mb-1 text-textSecondary", labelClassName)}
+        >
           {label}
           {required && <span className="text-error ml-1">*</span>}
         </label>
       )}
-      <div 
+      <div
         className={twMerge(
           "flex items-start border border-neutral-light rounded bg-white",
           error ? "border-error" : "",
