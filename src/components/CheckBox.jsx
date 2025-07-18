@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useFormContext, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 const CheckBox = ({ name, options, label, requiredMessage, required }) => {
 	const {
@@ -10,13 +10,14 @@ const CheckBox = ({ name, options, label, requiredMessage, required }) => {
 	return (
 		<div className='w-full mb-6'>
 			{label && (
-				<label htmlFor={`${name}-0`} className='block text-textSecondary mb-1'>
+				<label htmlFor={name} className='block text-textSecondary mb-1'>
 					{label}
 					{required && <span className='text-error ml-1'>*</span>}
 				</label>
 			)}
 
 			<Controller
+				id={name}
 				name={name}
 				control={control}
 				rules={{
