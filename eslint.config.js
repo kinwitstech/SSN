@@ -34,7 +34,17 @@ export default defineConfig([
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
-      "import/order": ["warn", { alphabetize: { order: "asc" } }],
+      "import/order": [
+        "warn",
+        {
+          groups: ["builtin", "external", "internal"],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
       "prettier/prettier": "error",
     },
   },

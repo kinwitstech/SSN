@@ -2,12 +2,15 @@ import { PhoneIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+
 import ssnLogo from "../../assets/ssn-logo.png";
 import BackArrowButton from "../../components/BackArrowButton";
 import Button from "../../components/Button";
 import Input from "../../components/InputField";
 
 const Login = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [phoneValue, setPhoneValue] = useState("");
 
@@ -51,10 +54,10 @@ const Login = () => {
           loading="lazy"
         />
 
-        <h1 className="text-center w-full mb-4">Login</h1>
+        <h1 className="text-center w-full mb-4">{t("login")}</h1>
 
         <p className="text-textSecondary text-center w-full">
-          Please provide your mobile number to login.
+          {t("pleaseProvideYourMobileNumberToLogin")}
         </p>
 
         <Input
