@@ -2,6 +2,7 @@ import { PhotoIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { Controller, useFormContext } from "react-hook-form";
+
 import Textarea from "../../../components/TextareaField";
 
 const acceptedTypes = ["image/png", "image/jpeg", "image/jpg", "image/webp"];

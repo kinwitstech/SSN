@@ -3,11 +3,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import Button from "../../../components/Button";
+
 import BrandingSetup from "./BrandingSetup";
 import ClinicDetails from "./ClinicDetails";
 import { fullSchema, stepFieldsMap } from "./RegisterClinicSchema";
 import SubscriptionPlans from "./SubscriptionPlans";
+import Button from "../../../components/Button";
 
 // Step Components
 const steps = [

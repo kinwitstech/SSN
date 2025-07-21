@@ -1,0 +1,12 @@
+{
+  "signIn": "ಲಾಗಿನ್",
+  "registerClinic": "ಕ್ಲಿನಿಕ್ ನೋಂದಣಿ",
+  "doctor": "ಡಾಕ್ಟರ್",
+  "ssnLogo": "SSN ಲೋಗೋ",
+  "affordableCareAnywhere": "ಅತ್ಯಂತ ಮುಕ್ತಾಯದ ಆರೈಕೆ.<br/>ಎಲ್ಲೆಡೆ",
+  "builtForClinicsAndDoctorsToBringQuality": "ಪ್ರತಿಯೊಬ್ಬ ರೋಗಿಗೂ ಗುಣಮಟ್ಟದ ಆರೋಗ್ಯ ಸೇವೆಯನ್ನು ಒದಗಿಸಲು ಕ್ಲಿನಿಕ್‌ಗಳು ಮತ್ತು ಡಾಕ್ಟರ್‌ಗಳಿಗಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ.",
+  "login": "ಲಾಗಿನ್",
+  "pleaseProvideYourMobileNumberToLogin": "ಲಾಗಿನ್ ಮಾಡಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನೀಡಿ.",
+  "inputVerificationCode": "ದೃಢೀಕರಣ ಕೋಡ್ ನಮೂದಿಸಿ",
+  "WeHaveSentOTP": "ನಾವು OTP ಕಳುಹಿಸಿದ್ದೇವೆ"
+}

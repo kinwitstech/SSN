@@ -1,4 +1,5 @@
 import { createRootRoute } from "@tanstack/react-router";
+
 import {
   landingPageRoute,
   loginRoute,

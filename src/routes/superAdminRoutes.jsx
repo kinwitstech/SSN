@@ -1,6 +1,7 @@
 import { createRoute } from "@tanstack/react-router";
-import Dashboard from "../pages/superAdmin/Dashboard";
+
 import { rootRoute } from "./rootRoutes";
+import Dashboard from "../pages/superAdmin/Dashboard";
 
 // App layout after authentication
 export const appLayoutRoute = createRoute({

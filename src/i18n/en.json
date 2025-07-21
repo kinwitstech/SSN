@@ -1,0 +1,12 @@
+{
+  "signIn": "Sign In",
+  "registerClinic": "Register Clinic",
+  "doctor": "Doctor",
+  "ssnLogo": "SSN Logo",
+  "affordableCareAnywhere": "Affordable Care.<br/>Anywhere",
+  "builtForClinicsAndDoctorsToBringQuality": "Built for clinics and doctors to bring quality healthcare to every patient.",
+  "login": "Login",
+  "pleaseProvideYourMobileNumberToLogin": "Please provide your mobile number to login.",
+  "inputVerificationCode": "Input Verification Code",
+  "WeHaveSentOTP": "We have sent an OTP to"
+}

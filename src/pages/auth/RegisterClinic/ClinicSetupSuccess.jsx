@@ -1,4 +1,5 @@
 import { CheckCircleIcon, SparklesIcon } from "@heroicons/react/24/solid";
+
 import Button from "../../../components/Button";
 
 const ClinicSetupSuccess = () => {

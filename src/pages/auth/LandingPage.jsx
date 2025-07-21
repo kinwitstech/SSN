@@ -1,40 +1,40 @@
+import { Trans, useTranslation } from "react-i18next";
+
 import doctorImage from "../../assets/doctorImage.jpg";
 import ssnLogo from "../../assets/ssn-logo.png";
 import Button from "../../components/Button";
 
 const LandingPage = () => {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-white flex-center flex-col px-4 py-8 text-center">
       <img
         src={ssnLogo || ""}
-        alt="SSN Logo"
+        alt={t("ssnLogo")}
         className="w-20 h-auto mb-6 object-contain"
         loading="lazy"
       />
       <img
         src={doctorImage || ""}
         srcSet={`${doctorImage} 1x, ${doctorImage} 2x`}
-        alt="Doctor"
+        alt={t("doctor")}
         className="w-full max-w-md h-auto mb-6 object-contain"
         loading="lazy"
       />
 
       <div className="mb-4">
         <h1 className="mb-3">
-          Affordable Care.
-          <br />
-          Anywhere.
+          <Trans i18nKey="affordableCareAnywhere" components={{ br: <br /> }} />
         </h1>
         <p className="mb-6 max-w-sm text-textSecondary">
-          Built for clinics and doctors to bring quality healthcare to every
-          patient.
+          {t("builtForClinicsAndDoctorsToBringQuality")}
         </p>
       </div>
 
       <div className="w-full max-w-sm space-y-5">
-        <Button text="Sign In" to="/login" />
+        <Button text={t("signIn")} to="/login" />
         <Button
-          text="Register Clinic"
+          text={t("registerClinic")}
           variant="outlined"
           to="/registerClinic"
         />
