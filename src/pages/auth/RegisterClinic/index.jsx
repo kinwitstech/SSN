@@ -5,8 +5,8 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../../components/Button";
 import BrandingSetup from "./BrandingSetup";
-import { fullSchema, stepFieldsMap } from "./RegisterClinicSchema";
 import ClinicDetails from "./ClinicDetails";
+import { fullSchema, stepFieldsMap } from "./RegisterClinicSchema";
 import SubscriptionPlans from "./SubscriptionPlans";
 
 // Step Components

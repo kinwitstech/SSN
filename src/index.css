@@ -17,9 +17,9 @@
   --color-dark: #343a40;
   --color-textPrimary: #1e2939;
   --color-textSecondary: #2e4470;
-  --color-textHint: #B4B4B4;
-  --color-neutral-light: #C5C6CC;
-  --color-neutral-dark: #8F9098;
+  --color-textHint: #b4b4b4;
+  --color-neutral-light: #c5c6cc;
+  --color-neutral-dark: #8f9098;
 
   --default-font-family: "Inter", system-ui, sans-serif;
 }
@@ -89,7 +89,9 @@
     box-shadow: 0 0 0 1000px white inset !important;
     -webkit-box-shadow: 0 0 0 1000px white inset !important;
     -webkit-text-fill-color: text-textPrimary !important;
-    transition: background-color 9999s ease-out, color 9999s ease-out;  
+    transition:
+      background-color 9999s ease-out,
+      color 9999s ease-out;
   }
 }
 
