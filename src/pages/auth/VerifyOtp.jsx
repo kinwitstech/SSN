@@ -1,6 +1,8 @@
 import { KeyIcon } from "@heroicons/react/24/outline";
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+
 import ssnLogo from "../../assets/ssn-logo.png";
 import BackArrowButton from "../../components/BackArrowButton";
 import Button from "../../components/Button";
@@ -9,6 +11,7 @@ import Input from "../../components/InputField";
 const VerifyOtp = () => {
   const { state: { phone = "" } = {} } = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { register, handleSubmit, formState } = useForm();
 
@@ -32,10 +35,12 @@ const VerifyOtp = () => {
           loading="lazy"
         />
 
-        <h1 className="text-center w-full mb-4">Input Verification Code</h1>
+        <h1 className="text-center w-full mb-4">
+          {t("inputVerificationCode")}
+        </h1>
 
         <p className="text-textSecondary text-center w-full">
-          We have sent an OTP to <br />
+          {t("WeHaveSentOTP")} <br />
           <span className="font-medium">
             +91 - {phone.replace(/^(\d{6})/, "XXXXXX")}
           </span>

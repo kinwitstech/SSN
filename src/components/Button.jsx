@@ -1,7 +1,7 @@
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "@tanstack/react-router";
 import PropTypes from "prop-types";
 import { twMerge } from "tailwind-merge";
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
 
 const Button = ({
   text,

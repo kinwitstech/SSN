@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+
+import CheckBox from "../../../components/CheckBox";
 import Input from "../../../components/InputField";
 import Textarea from "../../../components/TextareaField";
 
-const services = ["Lab Work", "Medical Dispensary"];
 const allowedTypes = [
   "application/pdf",
   "image/jpeg",
@@ -26,7 +27,6 @@ const ClinicDetails = () => {
   const [certificatePreviewName, setCertificatePreviewName] = useState("");
 
   const selectedCertificate = watch("certificate");
-  const selectedServices = watch("servicesProvided") || [];
 
   const handleNumericInput = (e) => {
     e.target.value = e.target.value.replace(/[^0-9]/g, "");
@@ -85,16 +85,6 @@ const ClinicDetails = () => {
       setCertificatePreviewName(selectedCertificate.name);
     }
   }, [selectedCertificate]);
-
-  const handleSelectServices = async (e, service) => {
-    const values = e.target.checked
-      ? [...selectedServices, service]
-      : selectedServices.filter((s) => s !== service);
-    setValue("servicesProvided", values, {
-      shouldValidate: true,
-    });
-    await trigger("servicesProvided");
-  };
 
   const inputProps = { register, formState };
 
@@ -193,35 +183,12 @@ const ClinicDetails = () => {
             </p>
           )}
         </div>
-
-        {/* --- Services Provided --- */}
-        <div className="w-full mb-6">
-          <label className="block text-textSecondary mb-1">
-            Services Provided <span className="text-error">*</span>
-          </label>
-          <div className="space-y-2">
-            {services.map((service) => (
-              <label key={service} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  value={service}
-                  checked={selectedServices?.includes(service)}
-                  {...register("servicesProvided", {
-                    required: "Please select at least one service",
-                  })}
-                  className="accent-primary"
-                  onChange={(e) => handleSelectServices(e, service)}
-                />
-                {service}
-              </label>
-            ))}
-            {formState.errors.servicesProvided?.message && (
-              <p className="text-error text-xs mt-1">
-                {formState.errors.servicesProvided.message}
-              </p>
-            )}
-          </div>
-        </div>
+        <CheckBox
+          name="servicesProvided"
+          label="Services Provided"
+          options={["Lab Work", "Medical Dispensary"]}
+          required
+        />
       </div>
     </div>
   );

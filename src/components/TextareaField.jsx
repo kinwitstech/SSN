@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { twMerge } from "tailwind-merge";
 import { useRef, useEffect } from "react";
+import { twMerge } from "tailwind-merge";
 
 // Textarea component for handling multi-line text input with optional auto-expansion,
 // error handling and label support.

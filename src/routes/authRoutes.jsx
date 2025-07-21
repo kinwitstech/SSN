@@ -1,11 +1,12 @@
 import { createRoute } from "@tanstack/react-router";
+
+import { rootRoute } from "./rootRoutes";
 import LandingPage from "../pages/auth/LandingPage";
 import Login from "../pages/auth/Login";
 import NotFound from "../pages/auth/NotFound";
 import ClinicSetupSuccess from "../pages/auth/RegisterClinic/ClinicSetupSuccess";
 import RegisterClinic from "../pages/auth/RegisterClinic/index";
 import VerifyOtp from "../pages/auth/VerifyOtp";
-import { rootRoute } from "./rootRoutes";
 
 export const landingPageRoute = createRoute({
   path: "/",
