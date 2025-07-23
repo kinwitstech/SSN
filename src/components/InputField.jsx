@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { twMerge } from "tailwind-merge";
 
+import FormFieldWrapper from "./FormFieldsWrapper";
+
 // Input Component
 // This component is a reusable input field with optional icons, validation, and styling.
 // It accepts label, placeholder, left and right icons.
@@ -22,26 +24,23 @@ const Input = ({
   rules,
   type,
   required,
+  size,
   ...rest
 }) => {
   const error = formState?.errors?.[name]?.message;
 
   return (
-    <div className="w-full mb-6">
-      {label && (
-        <label
-          htmlFor={name}
-          className={twMerge("block mb-1 text-textSecondary", labelClassName)}
-        >
-          {label}
-          {required && <span className="text-error ml-1">*</span>}
-        </label>
-      )}
+    <FormFieldWrapper
+      name={name}
+      label={label}
+      required={required}
+      error={error}
+      labelClassName={labelClassName}
+    >
       <div
         className={twMerge(
-          "flex items-center border border-neutral-light rounded px-3 py-3 bg-white",
-          error ? "border-error" : "focus-within:border-primary",
-          className
+          "border-neutral-light flex w-full items-center rounded-xl border",
+          error ? "border-error" : "focus-within:border-primary"
         )}
       >
         {leftIcon && (
@@ -57,14 +56,16 @@ const Input = ({
           maxLength={maxLength}
           {...(register ? register(name, rules) : {})}
           className={twMerge(
-            "flex-1 outline-none bg-transparent text-textPrimary",
+            "input text-textPrimary w-full rounded-xl border-0 bg-transparent outline-none focus:outline-none",
+            size ? `input-${size}` : "input-lg",
             leftIcon ? "pl-2" : "",
-            rightIcon ? "pr-2" : ""
+            rightIcon ? "pr-2" : "",
+            className
           )}
           onChange={rest.onChange}
           onInput={rest.onInput}
           aria-invalid={!!error}
-          aria-describedby={`${name}-error`}
+          aria-describedby={`${name}${error ? "-error" : ""}`}
           {...rest}
         />
 
@@ -73,9 +74,7 @@ const Input = ({
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              if (typeof rightIcon?.props?.onClick === "function") {
-                rightIcon.props.onClick(e);
-              }
+              rightIcon?.props?.onClick?.(e);
             }}
             className={rightIconClassName}
           >
@@ -83,13 +82,7 @@ const Input = ({
           </button>
         )}
       </div>
-
-      {error && (
-        <p id={`${name}-error`} className="text-error text-xs mt-1">
-          {error}
-        </p>
-      )}
-    </div>
+    </FormFieldWrapper>
   );
 };
 
@@ -110,6 +103,7 @@ Input.propTypes = {
   rightIcon: PropTypes.node,
   rightIconClassName: PropTypes.string,
   rules: PropTypes.object,
+  size: PropTypes.string,
   type: PropTypes.string,
   required: PropTypes.bool,
 };

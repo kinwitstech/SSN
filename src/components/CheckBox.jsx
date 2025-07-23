@@ -1,19 +1,28 @@
 import PropTypes from "prop-types";
 import { Controller, useFormContext } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
 
-const CheckBox = ({ name, options, label, requiredMessage, required }) => {
+const CheckBox = ({
+  name,
+  options,
+  label,
+  requiredMessage,
+  required,
+  size,
+  className,
+}) => {
   const {
     control,
     formState: { errors },
   } = useFormContext();
 
   return (
-    <div className="w-full mb-6">
+    <div className="mb-6 w-full">
       {label && (
-        <label htmlFor={name} className="block text-textSecondary mb-1">
+        <div className="text-textSecondary mb-2 block">
           {label}
           {required && <span className="text-error ml-1">*</span>}
-        </label>
+        </div>
       )}
 
       <Controller
@@ -43,7 +52,11 @@ const CheckBox = ({ name, options, label, requiredMessage, required }) => {
                         : (field.value || []).filter((v) => v !== option);
                       field.onChange(newValue);
                     }}
-                    className="accent-primary ml-4"
+                    className={twMerge(
+                      "checkbox checkbox-primary ml-4",
+                      size ? `checkbox-${size}` : "checkbox-sm",
+                      className
+                    )}
                   />
                   <label htmlFor={optionId}>{option}</label>
                 </div>
@@ -54,7 +67,7 @@ const CheckBox = ({ name, options, label, requiredMessage, required }) => {
       />
 
       {errors?.[name]?.message && (
-        <p className="text-error text-xs mt-1">{errors[name].message}</p>
+        <p className="text-error mt-1 text-xs">{errors[name].message}</p>
       )}
     </div>
   );
@@ -66,6 +79,8 @@ CheckBox.propTypes = {
   label: PropTypes.string,
   requiredMessage: PropTypes.string,
   required: PropTypes.bool,
+  size: PropTypes.string,
+  className: PropTypes.string,
 };
 
 CheckBox.defaultProps = {

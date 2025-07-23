@@ -21,25 +21,25 @@ const VerifyOtp = () => {
   };
 
   return (
-    <div className="min-h-screen flex-center px-4 py-6 relative">
+    <div className="flex-center relative min-h-screen px-4 py-6">
       <BackArrowButton />
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center w-full max-w-sm space-y-6"
+        className="flex w-full max-w-sm flex-col items-center space-y-6"
       >
         <img
           src={ssnLogo || ""}
           alt="SSN Logo"
-          className="w-20 h-20 mx-auto"
+          className="mx-auto h-20 w-20"
           loading="lazy"
         />
 
-        <h1 className="text-center w-full mb-4">
+        <h1 className="mb-4 w-full text-center">
           {t("inputVerificationCode")}
         </h1>
 
-        <p className="text-textSecondary text-center w-full">
+        <p className="text-textSecondary w-full text-center">
           {t("WeHaveSentOTP")} <br />
           <span className="font-medium">
             +91 - {phone.replace(/^(\d{6})/, "XXXXXX")}
@@ -60,8 +60,8 @@ const VerifyOtp = () => {
             },
           }}
           className="rounded-xl"
-          leftIcon={<KeyIcon className="h-5 w-5 text-primary mx-2" />}
-          leftIconClassName={"flex items-center text-neutral-dark"}
+          leftIcon={<KeyIcon className="text-primary mx-2 h-5 w-5" />}
+          leftIconClassName={"flex items-center text-neutral-dark ml-4"}
           register={register}
           formState={formState}
         />

@@ -67,24 +67,24 @@ export default function BrandingSetup() {
         Customize your clinic's appearance for patients
       </p>
       {/* Upload Logo */}
-      <div className="flex md:flex-row items-center gap-4 mb-2">
-        <div className="w-32 h-32 bg-blue-50 flex-center rounded overflow-hidden self-center md:self-auto">
+      <div className="mb-2 flex items-center gap-4 md:flex-row">
+        <div className="flex-center h-32 w-32 self-center overflow-hidden rounded bg-blue-50 md:self-auto">
           {logoPreview ? (
             <img
               src={logoPreview}
               alt="Preview"
-              className="w-28 h-28 object-cover"
+              className="h-28 w-28 object-cover"
             />
           ) : (
-            <PhotoIcon className="w-10 h-10 text-blue-300" />
+            <PhotoIcon className="h-10 w-10 text-blue-300" />
           )}
         </div>
 
         <div className="text-center md:text-left">
-          <div className="block mb-2">Upload Clinic’s Logo</div>
+          <div className="mb-2 block">Upload Clinic’s Logo</div>
           <label
             htmlFor="logoUpload"
-            className="cursor-pointer bg-primary text-white px-4 py-2 rounded inline-block"
+            className="bg-primary inline-block cursor-pointer rounded px-4 py-2 text-white"
           >
             <input
               id="logoUpload"
@@ -97,14 +97,14 @@ export default function BrandingSetup() {
           </label>
 
           {selectedLogo && typeof selectedLogo === "object" && (
-            <p className="text-sm text-neutral-dark mt-1">
+            <p className="text-neutral-dark mt-1 text-sm">
               {selectedLogo.name}
             </p>
           )}
         </div>
       </div>
       {errors?.clinicLogo && (
-        <p className="text-error text-xs mb-0">{errors.clinicLogo.message}</p>
+        <p className="text-error mb-0 text-xs">{errors.clinicLogo.message}</p>
       )}
 
       {/* Color Picker */}
@@ -119,13 +119,13 @@ export default function BrandingSetup() {
             control={control}
             defaultValue="#0190CC"
             render={({ field }) => (
-              <div className="p-2 border rounded inline-block">
+              <div className="inline-block rounded border p-2">
                 <HexColorPicker {...field} color={field.value} />
               </div>
             )}
           />
           <div
-            className="mt-2 w-18 h-18 rounded border"
+            className="mt-2 h-18 w-18 rounded border"
             style={{ backgroundColor: selectedColor }}
           />
         </div>
