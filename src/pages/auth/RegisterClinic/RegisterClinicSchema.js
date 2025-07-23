@@ -63,7 +63,7 @@ export const stepFieldsMap = {
     // "email",
     "phone",
     // "clinicAddress",
-    "speciality",
+    "specialty",
     "consultationFee",
     "certificate",
     "servicesProvided",
