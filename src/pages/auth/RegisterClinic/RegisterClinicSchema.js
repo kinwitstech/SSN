@@ -1,6 +1,6 @@
 import z from "zod";
 
-// Zod schemas
+// Zod schemas for register clinic form.
 const clinicDetailsSchema = z.object({});
 
 const brandingSchema = z.object({
@@ -8,10 +8,10 @@ const brandingSchema = z.object({
     message: "Clinic logo is required",
   }),
   clinicPrimaryColor: z.string().min(1, "Primary color is required"),
-  clinicTagline: z
-    .string()
-    .min(1, "Clinic tagline is required")
-    .max(200, "Tagline is too long"),
+  // clinicTagline: z
+  //   .string()
+  //   .min(1, "Clinic tagline is required")
+  //   .max(200, "Tagline is too long"),
 });
 
 const subscriptionPlanSchema = z.object({
@@ -21,10 +21,10 @@ const subscriptionPlanSchema = z.object({
 const clinicSchema = z.object({
   clinicName: z.string().min(1, "Clinic name is required"),
   adminName: z.string().min(1, "Admin name is required"),
-  email: z.string().email("Invalid email"),
+  // email: z.string().email("Invalid email"),
   phone: z.string().regex(/^[0-9]{10}$/, "Phone number must contain 10 digits"),
-  clinicAddress: z.string().min(1, "Clinic address is required"),
-  speciality: z.string().min(1, "Speciality is required"),
+  // clinicAddress: z.string().min(1, "Clinic address is required"),
+  specialty: z.string().min(1, "Specialty is required"),
   consultationFee: z
     .string()
     .min(1, "Fee is required")
@@ -60,14 +60,14 @@ export const stepFieldsMap = {
   0: [
     "clinicName",
     "adminName",
-    "email",
+    // "email",
     "phone",
-    "clinicAddress",
-    "speciality",
+    // "clinicAddress",
+    "specialty",
     "consultationFee",
     "certificate",
     "servicesProvided",
   ],
-  1: ["clinicLogo", "clinicPrimaryColor", "clinicTagline"],
+  1: ["clinicLogo", "clinicPrimaryColor"],
   2: ["subscriptionPlan"],
 };

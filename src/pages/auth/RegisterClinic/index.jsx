@@ -75,40 +75,40 @@ const RegisterClinic = () => {
 
   return (
     <FormProvider {...methods}>
-      <div className="h-screen flex flex-col max-w-xl mx-auto p-6">
+      <div className="mx-auto flex h-screen max-w-xl flex-col p-6">
         {/* Step Indicator */}
-        <div className="flex justify-between mb-6 pt-4">
+        <div className="mb-6 flex justify-between pt-4">
           {steps.map((step, index) => (
             <div
               key={step.title}
               onClick={() => onHandleStepperClick(index)}
-              className="flex-1 text-center cursor-pointer"
+              className="flex-1 cursor-pointer text-center"
             >
               <div
-                className={`w-8 h-8 mx-auto rounded-full text-white flex-center ${
+                className={`flex-center mx-auto h-8 w-8 rounded-full text-white ${
                   index === stepIndex
                     ? "bg-primary"
                     : index < stepIndex
-                      ? "bg-[#B4DBFF] text-primary-dark"
+                      ? "text-primary-dark bg-[#B4DBFF]"
                       : "bg-gray-300 text-black"
                 }`}
               >
                 {index < stepIndex ? (
                   <CheckIcon
-                    className="w-8 h-4 text-primary-dark"
+                    className="text-primary-dark h-4 w-8"
                     strokeWidth={4}
                   />
                 ) : (
                   <span>{index + 1}</span>
                 )}
               </div>
-              <p className="text-sm mt-1">{step.title}</p>
+              <p className="mt-1 text-sm">{step.title}</p>
             </div>
           ))}
         </div>
 
         {/* Scrollable Form Content */}
-        <div className="flex-grow overflow-y-auto pr-1">
+        <div className="hide-scroll flex-grow overflow-y-auto">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -122,7 +122,7 @@ const RegisterClinic = () => {
 
         <div className="mt-6 mb-6">
           <div className="flex justify-between">
-            <div className="w-50 mr-2">
+            <div className="mr-2 w-50">
               <Button
                 text="Previous"
                 variant="outlined"
@@ -130,7 +130,7 @@ const RegisterClinic = () => {
                 onClick={handlePrevious}
               />
             </div>
-            <div className="w-50 ml-2">
+            <div className="ml-2 w-50">
               <Button
                 text={
                   stepIndex === steps.length - 1

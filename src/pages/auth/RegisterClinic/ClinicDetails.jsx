@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
 
-import CheckBox from "../../../components/CheckBox";
-import Input from "../../../components/InputField";
-import Textarea from "../../../components/TextareaField";
+import CheckBox from "@/components/CheckBox";
+import Input from "@/components/InputField";
+import Select from "@/components/SelectField";
+import Textarea from "@/components/TextareaField";
 
 const allowedTypes = [
   "application/pdf",
@@ -13,6 +15,11 @@ const allowedTypes = [
   "image/webp",
 ];
 const maxSize = 2 * 1024 * 1024; // 2MB
+
+const specialtyOptions = [
+  { value: "cardiology", label: "Cardiology" },
+  { value: "dermatology", label: "Dermatology" },
+];
 
 const ClinicDetails = () => {
   const {
@@ -99,71 +106,77 @@ const ClinicDetails = () => {
         <Input
           name="clinicName"
           label="Clinic Name"
-          placeholder="Enter your Clinic Name"
+          placeholder="Enter clinic name"
           required
           {...inputProps}
         />
         <Input
           name="adminName"
           label="Admin Name"
-          placeholder="Enter Admin Name"
+          placeholder="Enter admin name"
           required
           {...inputProps}
         />
         <Input
           name="email"
           label="Email"
-          placeholder="Enter your Email ID"
+          placeholder="Enter email id"
           type="email"
-          required
+          autoComplete="email"
           {...inputProps}
         />
         <Input
           name="phone"
           label="Phone"
-          placeholder="Enter your Phone Number"
+          placeholder="Enter phone number"
           type="tel"
           required
           onInput={handleNumericInput}
+          autoComplete={"mobile tel"}
           {...inputProps}
         />
         <Textarea
           name="clinicAddress"
           label="Clinic Address"
-          placeholder="Enter your Clinic Address"
+          placeholder="Enter clinic address"
           required
-          {...inputProps}
           rows={3}
+          {...inputProps}
         />
-        <Input
-          name="speciality"
-          label="Speciality"
-          placeholder="Enter your Speciality"
+        <Select
+          name="specialty"
+          label="Specialty"
+          placeholder="Select specialty"
           required
+          options={specialtyOptions}
           {...inputProps}
         />
         <Input
           name="consultationFee"
           label="Consultation Fee"
-          placeholder="Enter the Consultation Fee"
-          required
+          placeholder="Enter consultation fee"
           onInput={handleDecimalInput}
           {...inputProps}
         />
 
         {/* --- Certificate Upload --- */}
-        <div className="w-full mb-6">
-          <label className="block text-textSecondary mb-1">
+        <div className="mb-6 w-full">
+          <div className="text-textSecondary mb-2 block">
             Medical Registration Certificate{" "}
             <span className="text-error">*</span>
-          </label>
+          </div>
 
           <label htmlFor="certificateUpload" className="cursor-pointer">
-            <div className="w-full flex items-center justify-between px-4 py-2 border border-neutral-light rounded-md bg-white">
-              <span className="text-sm text-neutral-dark">
+            <div
+              className={twMerge(
+                "border-neutral-light flex w-full items-center justify-between rounded-xl border px-4 py-2",
+                formState.errors?.certificate?.message ? "border-error" : ""
+              )}
+            >
+              <span className="text-neutral-dark text-sm">
                 {certificatePreviewName || "No file chosen"}
               </span>
-              <span className="bg-primary text-white text-sm px-3 py-1 rounded-md">
+              <span className="bg-primary rounded-xl px-3 py-1 text-sm text-white">
                 Choose File
               </span>
             </div>
@@ -178,7 +191,7 @@ const ClinicDetails = () => {
           />
 
           {formState.errors.certificate?.message && (
-            <p className="text-error text-xs mt-1">
+            <p className="text-error mt-1 text-xs">
               {formState.errors.certificate.message}
             </p>
           )}

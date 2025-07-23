@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
+
+import FormFieldWrapper from "./FormFieldsWrapper";
 
 // Textarea component for handling multi-line text input with optional auto-expansion,
 // error handling and label support.
@@ -20,6 +22,7 @@ const Textarea = ({
   autoExpand,
   onInput,
   required,
+  size,
   ...rest
 }) => {
   const error = formState?.errors?.[name]?.message;
@@ -40,53 +43,41 @@ const Textarea = ({
   }, [autoExpand]);
 
   return (
-    <div className="w-full mb-6">
-      {label && (
-        <label
-          htmlFor={name}
-          className={twMerge("block mb-1 text-textSecondary", labelClassName)}
-        >
-          {label}
-          {required && <span className="text-error ml-1">*</span>}
-        </label>
-      )}
-      <div
+    <FormFieldWrapper
+      name={name}
+      label={label}
+      required={required}
+      error={error}
+      labelClassName={labelClassName}
+    >
+      <textarea
+        id={name}
+        name={name}
+        rows={rows}
+        placeholder={placeholder}
+        inputMode={inputMode}
+        maxLength={maxLength}
+        ref={textareaRef}
+        {...(register ? register(name, rules) : {})}
+        onInput={(e) => {
+          if (autoExpand && textareaRef.current) {
+            textareaRef.current.style.height = "auto";
+            textareaRef.current.style.height =
+              textareaRef.current.scrollHeight + "px";
+          }
+          onInput?.(e);
+        }}
+        {...rest}
         className={twMerge(
-          "flex items-start border border-neutral-light rounded bg-white",
-          error ? "border-error" : "",
+          "textarea text-textPrimary w-full rounded-xl p-3 outline-none focus:outline-none",
+          size ? `textarea-${size}` : "textarea-lg",
+          error ? "border-error" : "focus-within:border-primary",
           className
         )}
-      >
-        <textarea
-          id={name}
-          name={name}
-          rows={rows}
-          placeholder={placeholder}
-          inputMode={inputMode}
-          maxLength={maxLength}
-          ref={textareaRef}
-          {...(register ? register(name, rules) : {})}
-          onInput={(e) => {
-            if (autoExpand && textareaRef.current) {
-              textareaRef.current.style.height = "auto";
-              textareaRef.current.style.height =
-                textareaRef.current.scrollHeight + "px";
-            }
-            onInput?.(e);
-          }}
-          {...rest}
-          className="w-full p-3 outline-none rounded focus:ring-1 focus:ring-primary focus:border-primary"
-          aria-invalid={!!error}
-          aria-describedby={`${name}-error`}
-        />
-      </div>
-
-      {error && (
-        <p id={`${name}-error`} className="text-error text-xs mt-1">
-          {error}
-        </p>
-      )}
-    </div>
+        aria-invalid={!!error}
+        aria-describedby={`${name}-error`}
+      />
+    </FormFieldWrapper>
   );
 };
 
@@ -106,6 +97,7 @@ Textarea.propTypes = {
   onChange: PropTypes.func,
   onInput: PropTypes.func,
   required: PropTypes.bool,
+  size: PropTypes.string,
 };
 
 Textarea.defaultProps = {

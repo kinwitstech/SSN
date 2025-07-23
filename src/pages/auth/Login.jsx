@@ -41,22 +41,22 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex-center px-4 py-6 relative">
+    <div className="flex-center relative min-h-screen px-4 py-6">
       <BackArrowButton to="/" />
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center w-full max-w-sm space-y-6"
+        className="flex w-full max-w-sm flex-col items-center space-y-6"
       >
         <img
           src={ssnLogo || ""}
           alt="SSN Logo"
-          className="w-20 h-20 mx-auto"
+          className="mx-auto h-20 w-20"
           loading="lazy"
         />
 
-        <h1 className="text-center w-full mb-4">{t("login")}</h1>
+        <h1 className="mb-4 w-full text-center">{t("login")}</h1>
 
-        <p className="text-textSecondary text-center w-full">
+        <p className="text-textSecondary w-full text-center">
           {t("pleaseProvideYourMobileNumberToLogin")}
         </p>
 
@@ -65,7 +65,7 @@ const Login = () => {
           type="tel"
           inputMode="numeric"
           maxLength={10}
-          placeholder="Enter Phone Number"
+          placeholder="Enter phone number"
           rules={{
             required: "Phone number is required",
             pattern: {
@@ -76,19 +76,19 @@ const Login = () => {
           className="rounded-xl"
           leftIcon={
             <>
-              <PhoneIcon className="h-5 w-5 text-primary mr-1" />
-              <span className="flex items-center text-neutral-dark mr-1 space-x-2">
+              <PhoneIcon className="text-primary mr-2 h-5 w-5" />
+              <span className="text-neutral-dark mr-1 flex items-center space-x-2">
                 <span>+91</span>
-                <span className="inline-block w-px h-6 bg-current" />
+                <span className="inline-block h-6 w-px bg-current" />
               </span>
             </>
           }
-          leftIconClassName={"flex items-center text-neutral-dark"}
+          leftIconClassName={"flex items-center text-neutral-dark ml-4"}
           rightIcon={
             phoneValue.length > 0 &&
             phoneValue.length < 10 && (
               <XMarkIcon
-                className="h-4 w-4 text-textSecondary cursor-pointer ml-2"
+                className="text-textSecondary ml-2 h-4 w-4 cursor-pointer"
                 onClick={clearInput}
               />
             )

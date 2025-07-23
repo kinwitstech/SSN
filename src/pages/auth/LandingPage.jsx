@@ -7,18 +7,18 @@ import Button from "../../components/Button";
 const LandingPage = () => {
   const { t } = useTranslation();
   return (
-    <div className="min-h-screen bg-white flex-center flex-col px-4 py-8 text-center">
+    <div className="flex-center min-h-screen flex-col px-4 py-8 text-center">
       <img
         src={ssnLogo || ""}
         alt={t("ssnLogo")}
-        className="w-20 h-auto mb-6 object-contain"
+        className="mb-6 h-auto w-20 object-contain"
         loading="lazy"
       />
       <img
         src={doctorImage || ""}
         srcSet={`${doctorImage} 1x, ${doctorImage} 2x`}
         alt={t("doctor")}
-        className="w-full max-w-md h-auto mb-6 object-contain"
+        className="mb-6 h-auto w-full max-w-md object-contain"
         loading="lazy"
       />
 
@@ -26,7 +26,7 @@ const LandingPage = () => {
         <h1 className="mb-3">
           <Trans i18nKey="affordableCareAnywhere" components={{ br: <br /> }} />
         </h1>
-        <p className="mb-6 max-w-sm text-textSecondary">
+        <p className="text-textSecondary mb-6 max-w-sm">
           {t("builtForClinicsAndDoctorsToBringQuality")}
         </p>
       </div>
