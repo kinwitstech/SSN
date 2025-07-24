@@ -85,9 +85,9 @@ const DoctorFormContent = () => {
 
   return (
     <div className="space-y-6 pb-6">
-      <div className="bg-blue-50 text-blue-800 p-5 text-sm rounded-md flex items-start gap-2">
+      <div className="bg-blue-50 text-secondary p-5 text-sm rounded-md flex items-start gap-2">
         <div className="flex items-center justify-center">
-          <InformationCircleIcon className="w-5 h-5 mt-5 text-blue-600 shrink-0" />
+          <InformationCircleIcon className="w-5 h-5 mt-5 text-primary shrink-0" />
         </div>
         <span>
           Fill in the following details to complete your profile.
@@ -115,7 +115,7 @@ const DoctorFormContent = () => {
           </div>
           <label
             htmlFor="profileImageUpload"
-            className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary text-white flex items-center justify-center rounded-full cursor-pointer hover:bg-primary-dark"
+            className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary text-white flex-center rounded-full cursor-pointer hover:bg-primary-dark"
           >
             +
           </label>
@@ -192,7 +192,7 @@ const DoctorDetails = () => {
     resolver: zodResolver(registerDoctorSchema),
   });
 
-  const { trigger, getValues } = methods;
+  const { trigger, getValues, handleSubmit } = methods;
   const navigate = useNavigate();
 
   const onSubmit = () => {
@@ -208,14 +208,16 @@ const DoctorDetails = () => {
           <div className="flex-shrink-0">
             <img src={logo} className="w-8 h-8 mb-4" />
           </div>
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex-center">
             <p className="text-lg font-semibold">Register at Clinic X</p>
           </div>
         </div>
 
         {/* Scrollable form container */}
         <div className="hide-scroll flex-grow overflow-y-auto pr-1">
-          <DoctorFormContent />
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <DoctorFormContent />
+          </form>
         </div>
 
         {/* Footer buttons */}

@@ -15,7 +15,7 @@ const registerDoctorSchema = z.object({
     .string()
     .regex(/^\d{10}$/, "Phone number must be exactly 10 digits."),
   specialty: z.string().min(1, "Specialty is required."),
-  shortIntroduction: z.string().min(1, "Short introduction is required."),
+  //shortIntroduction: z.string().min(1, "Short introduction is required."),
   profileImage: z
     .any()
     .refine((file) => file !== null, {
