@@ -1,17 +1,30 @@
 import { createRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 
 import { rootRoute } from "./rootRoutes";
-import LandingPage from "../pages/auth/LandingPage";
-import Login from "../pages/auth/Login";
-import NotFound from "../pages/auth/NotFound";
-import ClinicSetupSuccess from "../pages/auth/RegisterClinic/ClinicSetupSuccess";
-import RegisterClinic from "../pages/auth/RegisterClinic/index";
-import VerifyOtp from "../pages/auth/VerifyOtp";
+import { useSubdomain } from "@/hooks/useSubdomain";
+import NotFound from "@/pages/auth/NotFound";
+import ClinicSetupSuccess from "@/pages/auth/RegisterClinic/ClinicSetupSuccess";
+import RegisterClinic from "@/pages/auth/RegisterClinic/index";
+import { Fallback, RouteError } from "@/pages/auth/RouteError";
+import VerifyOtp from "@/pages/auth/VerifyOtp";
+
+const LandingPage = lazy(() => import("@/pages/auth/LandingPage"));
+const Login = lazy(() => import("@/pages/auth/Login"));
 
 export const landingPageRoute = createRoute({
   path: "/",
   getParentRoute: () => rootRoute,
-  component: LandingPage,
+  errorComponent: RouteError,
+  component: function LandingRouteComponent() {
+    const { isMainDomain } = useSubdomain();
+    const Component = isMainDomain ? LandingPage : Login;
+    return (
+      <Suspense fallback={<Fallback />}>
+        <Component />
+      </Suspense>
+    );
+  },
 });
 
 export const loginRoute = createRoute({
