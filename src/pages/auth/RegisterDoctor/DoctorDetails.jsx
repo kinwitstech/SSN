@@ -214,7 +214,7 @@ const DoctorDetails = () => {
         </div>
 
         {/* Scrollable form container */}
-        <div className="flex-grow overflow-y-auto pr-1">
+        <div className="hide-scroll flex-grow overflow-y-auto pr-1">
           <DoctorFormContent />
         </div>
 
