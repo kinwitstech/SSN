@@ -17,7 +17,7 @@ const BackArrowButton = ({ to }) => {
   return (
     <button
       onClick={handleClick}
-      className="absolute top-[2.5rem] left-[2.5rem] text-primary text-xl cursor-pointer"
+      className="text-primary absolute top-[2.5rem] left-[2.5rem] cursor-pointer text-xl"
     >
       <ArrowLeftIcon className="h-6 w-6" />
     </button>

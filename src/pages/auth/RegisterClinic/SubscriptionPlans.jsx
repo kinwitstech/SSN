@@ -55,26 +55,26 @@ export default function SubscriptionPlans() {
             <div
               key={plan.id}
               onClick={() => onHandleSelect(plan.id)}
-              className={`cursor-pointer border rounded-lg p-4 transition gap-y-4 ${
+              className={`cursor-pointer gap-y-4 rounded-lg border p-4 transition ${
                 isSelected ? "border-primary shadow" : "border-neutral-light"
               }`}
             >
-              <div className="flex items-center mb-2">
+              <div className="mb-2 flex items-center">
                 <input
                   type="radio"
                   name="subscriptionPlan"
                   value={plan.id}
                   checked={isSelected}
                   onChange={() => onHandleSelect(plan.id)}
-                  className="w-5 h-5 mr-3 accent-primary"
+                  className="accent-primary mr-3 h-5 w-5"
                 />
                 <h3>{plan.title}</h3>
               </div>
-              <p className="text-primary font-semibold mb-2">{plan.price}</p>
+              <p className="text-primary mb-2 font-semibold">{plan.price}</p>
               <ul className="space-y-1 text-sm">
                 {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex gap-2 items-start">
-                    <span className="w-2 h-2 mt-2 bg-success rounded-full shrink-0" />
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="bg-success mt-2 h-2 w-2 shrink-0 rounded-full" />
                     <span>{feature}</span>
                   </li>
                 ))}
