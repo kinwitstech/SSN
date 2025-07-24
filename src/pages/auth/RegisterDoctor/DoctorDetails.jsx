@@ -1,9 +1,11 @@
-// src/pages/DoctorDetails.jsx
+import { InformationCircleIcon, UserIcon } from "@heroicons/react/24/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 
 import registerDoctorSchema from "./RegisterDoctorScheme";
+import logo from "@/assets/ssn-logo.png";
 import Button from "@/components/Button";
 import Input from "@/components/InputField";
 import Textarea from "@/components/TextareaField";
@@ -83,9 +85,10 @@ const DoctorFormContent = () => {
 
   return (
     <div className="space-y-6 pb-6">
-      {/* Info Box */}
-      <div className="bg-blue-50 text-blue-800 p-3 text-sm rounded-md flex items-start gap-2">
-        <span className="text-lg font-bold">i</span>
+      <div className="bg-blue-50 text-blue-800 p-5 text-sm rounded-md flex items-start gap-2">
+        <div className="flex items-center justify-center">
+          <InformationCircleIcon className="w-5 h-5 mt-5 text-blue-600 shrink-0" />
+        </div>
         <span>
           Fill in the following details to complete your profile.
           <br />
@@ -106,13 +109,13 @@ const DoctorFormContent = () => {
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <div className="w-12 h-12 bg-purple-300 rounded-full"></div>
+                <UserIcon className="w-10 h-10 text-purple-400" />
               </div>
             )}
           </div>
           <label
             htmlFor="profileImageUpload"
-            className="absolute -bottom-1 -right-1 bg-blue-500 text-white p-2 rounded-full cursor-pointer hover:bg-blue-600 transition-colors"
+            className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary text-white flex items-center justify-center rounded-full cursor-pointer hover:bg-primary-dark"
           >
             +
           </label>
@@ -165,9 +168,9 @@ const DoctorFormContent = () => {
         {...inputProps}
       />
       <Input
-        name="speciality"
-        label="Speciality"
-        placeholder="Enter your Speciality"
+        name="specialty"
+        label="Specialty"
+        placeholder="Enter your Specialty"
         required
         {...inputProps}
       />
@@ -181,7 +184,7 @@ const DoctorDetails = () => {
       fullName: "",
       email: "",
       phone: "",
-      speciality: "",
+      specialty: "",
       shortIntroduction: "",
       profileImage: null,
     },
@@ -189,18 +192,24 @@ const DoctorDetails = () => {
     resolver: zodResolver(registerDoctorSchema),
   });
 
-  const { trigger } = methods;
+  const { trigger, getValues } = methods;
+  const navigate = useNavigate();
+
+  const onSubmit = () => {
+    const data = getValues();
+    console.log("Doctor Registration Data:", data);
+    navigate({ to: "/register-doctor/success" });
+  };
 
   return (
     <FormProvider {...methods}>
       <div className="h-screen flex flex-col max-w-xl mx-auto p-6">
-        {/* Top band - SSN + Clinic text */}
-        <div className="flex justify-between items-center mb-6 pt-4 px-4 py-2 rounded-md bg-primary text-white">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-white text-primary rounded-full flex items-center justify-center font-bold">
-              S
-            </div>
-            <p className="text-sm font-medium">Register at Clinic X</p>
+        <div className="flex items-center mb-6 pt-4 h-16 bg-primary text-white rounded-md relative px-4">
+          <div className="flex-shrink-0">
+            <img src={logo} className="w-8 h-8 mb-4" />
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <p className="text-lg font-semibold">Register at Clinic X</p>
           </div>
         </div>
 
@@ -214,7 +223,7 @@ const DoctorDetails = () => {
           <Button
             text="Cancel"
             variant="outline"
-            onClick={() => console.log("Registration cancelled")}
+            onClick={() => navigate({ to: "/" })}
             className="flex-1"
           />
           <Button
@@ -223,7 +232,7 @@ const DoctorDetails = () => {
             onClick={async () => {
               const isValid = await trigger();
               if (isValid) {
-                console.log("Registration completed");
+                onSubmit();
               }
             }}
           />

@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 
 const allowedImageTypes = [
   "image/jpeg",
@@ -6,27 +6,27 @@ const allowedImageTypes = [
   "image/png",
   "image/webp",
 ];
-const maxImageSize = 2 * 1024 * 1024; // 2MB
+const maxImageSize = 2 * 1024 * 1024;
 
 const registerDoctorSchema = z.object({
-  fullName: z.string().min(1, "Full name is required"),
-  email: z.string().email("Invalid email address"),
+  fullName: z.string().min(1, "Full name is required."),
+  email: z.string().min(1, "Email is required.").email("Invalid email."),
   phone: z
     .string()
-    .regex(/^[0-9]{10}$/, "Phone number must be exactly 10 digits"),
-  speciality: z.string().min(1, "Speciality is required"),
-  shortIntroduction: z
-    .string()
-    .max(200, "Introduction must be under 200 characters")
-    .optional(),
+    .regex(/^\d{10}$/, "Phone number must be exactly 10 digits."),
+  specialty: z.string().min(1, "Specialty is required."),
+  shortIntroduction: z.string().min(1, "Short introduction is required."),
   profileImage: z
-    .instanceof(File)
-    .refine((file) => file?.size > 0, "Profile image is required")
-    .refine((file) => file.size <= maxImageSize, "Image must be under 2MB")
-    .refine(
-      (file) => allowedImageTypes.includes(file.type),
-      "Invalid file type. Only image formats allowed"
-    ),
+    .any()
+    .refine((file) => file !== null, {
+      message: "Profile image is required.",
+    })
+    .refine((file) => !file || allowedImageTypes.includes(file?.type), {
+      message: "Only JPEG, PNG, or WEBP images allowed.",
+    })
+    .refine((file) => !file || file.size <= maxImageSize, {
+      message: "Image must be under 2MB.",
+    }),
 });
 
 export default registerDoctorSchema;

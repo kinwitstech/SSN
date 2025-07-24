@@ -6,7 +6,8 @@ import Login from "../pages/auth/Login";
 import NotFound from "../pages/auth/NotFound";
 import ClinicSetupSuccess from "../pages/auth/RegisterClinic/ClinicSetupSuccess";
 import RegisterClinic from "../pages/auth/RegisterClinic/index";
-import DoctorDetails from "../pages/auth/RegisterDoctor/DoctorDetails"; // ✅ Add this
+import DoctorDetails from "../pages/auth/RegisterDoctor/DoctorDetails";
+import DoctorRegisterSuccess from "../pages/auth/RegisterDoctor/DoctorRegisterSuccess";
 import VerifyOtp from "../pages/auth/VerifyOtp";
 
 export const landingPageRoute = createRoute({
@@ -40,10 +41,15 @@ export const registerClinicSuccessRoute = createRoute({
 });
 
 export const doctorDetailsRoute = createRoute({
-  // ✅ Add this route here
   path: "/register-doctor",
   getParentRoute: () => rootRoute,
   component: DoctorDetails,
+});
+
+export const doctorRegisterSuccessRoute = createRoute({
+  path: "/register-doctor/success",
+  getParentRoute: () => rootRoute,
+  component: DoctorRegisterSuccess,
 });
 
 export const notFoundRoute = createRoute({
