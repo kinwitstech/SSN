@@ -21,6 +21,10 @@ const Login = () => {
   useEffect(() => {
     if (subdomain) {
       document.documentElement.style.setProperty("--color-primary", "#6f6dff");
+      document.documentElement.style.setProperty(
+        "--color-primary-dark",
+        "#5553fd"
+      );
     }
   }, [subdomain]);
 
