@@ -85,9 +85,9 @@ const DoctorFormContent = () => {
 
   return (
     <div className="space-y-6 pb-6">
-      <div className="bg-blue-50 text-secondary p-5 text-sm rounded-md flex items-start gap-2">
+      <div className="text-secondary flex items-start gap-2 rounded-md bg-blue-50 p-5 text-sm">
         <div className="flex-center">
-          <InformationCircleIcon className="w-5 h-5 mt-5 text-primary shrink-0" />
+          <InformationCircleIcon className="text-primary mt-5 h-5 w-5 shrink-0" />
         </div>
         <span>
           Fill in the following details to complete your profile.
@@ -100,22 +100,22 @@ const DoctorFormContent = () => {
       {/* Profile Image Upload */}
       <div className="flex justify-center">
         <div className="relative">
-          <div className="w-24 h-24 rounded-full bg-purple-100 overflow-hidden">
+          <div className="h-24 w-24 overflow-hidden rounded-full bg-purple-100">
             {profileImagePreview ? (
               <img
                 src={profileImagePreview}
                 alt="Profile Preview"
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover"
               />
             ) : (
-              <div className="w-full h-full flex-center">
-                <UserIcon className="w-10 h-10 text-purple-400" />
+              <div className="flex-center h-full w-full">
+                <UserIcon className="h-10 w-10 text-purple-400" />
               </div>
             )}
           </div>
           <label
             htmlFor="profileImageUpload"
-            className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary text-white flex-center rounded-full cursor-pointer hover:bg-primary-dark"
+            className="bg-primary flex-center hover:bg-primary-dark absolute -right-1 -bottom-1 h-8 w-8 cursor-pointer rounded-full text-white"
           >
             +
           </label>
@@ -130,7 +130,7 @@ const DoctorFormContent = () => {
       </div>
 
       {formState.errors.profileImage?.message && (
-        <p className="text-error text-xs text-center -mt-4">
+        <p className="text-error -mt-4 text-center text-xs">
           {String(formState.errors.profileImage.message)}
         </p>
       )}
@@ -203,12 +203,12 @@ const DoctorDetails = () => {
 
   return (
     <FormProvider {...methods}>
-      <div className="h-screen flex flex-col max-w-xl mx-auto p-6">
-        <div className="flex items-center mb-6 pt-4 h-16 bg-primary text-white rounded-md relative px-4">
+      <div className="mx-auto flex h-screen max-w-xl flex-col p-6">
+        <div className="bg-primary relative mb-6 flex h-16 items-center rounded-md px-4 pt-4 text-white">
           <div className="flex-shrink-0">
-            <img src={logo} className="w-8 h-8 mb-4" />
+            <img src={logo} className="mb-4 h-8 w-8" />
           </div>
-          <div className="absolute inset-0 flex-center">
+          <div className="flex-center absolute inset-0">
             <p className="text-lg font-semibold">Register at Clinic X</p>
           </div>
         </div>

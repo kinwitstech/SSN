@@ -4,12 +4,12 @@ import Button from "../../../components/Button";
 
 const ClinicSetupSuccess = () => {
   return (
-    <div className="min-h-screen flex-center flex-col px-4 bg-white">
-      <div className="flex mb-10">
-        <SparklesIcon className="w-32 h-32 text-primary mb-6" />
+    <div className="flex-center min-h-screen flex-col bg-white px-4">
+      <div className="mb-10 flex">
+        <SparklesIcon className="text-primary mb-6 h-32 w-32" />
       </div>
-      <div className="bg-green-100 rounded-lg p-5 w-full max-w-md flex items-start gap-3 mb-10">
-        <CheckCircleIcon className="h-6 w-6 text-success mt-1" />
+      <div className="mb-10 flex w-full max-w-md items-start gap-3 rounded-lg bg-green-100 p-5">
+        <CheckCircleIcon className="text-success mt-1 h-6 w-6" />
         <div>
           <p className="font-semibold">Clinic Setup is successful</p>
           <p className="text-sm">Login to complete full setup</p>

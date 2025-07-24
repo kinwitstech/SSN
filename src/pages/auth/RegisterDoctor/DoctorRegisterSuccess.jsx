@@ -5,15 +5,15 @@ import RegisterSuccessIcon from "@/assets/RegisterSuccessIcon.jpg";
 
 const DoctorRegisterSuccess = () => {
   return (
-    <div className="min-h-screen bg-white flex-center flex-col px-4 py-10 animate-fade-in">
+    <div className="flex-center animate-fade-in min-h-screen flex-col bg-white px-4 py-10">
       <img
         src={RegisterSuccessIcon}
         alt="Registration Success"
-        className="w-[280px] h-[239px] mb-8"
+        className="mb-8 h-[239px] w-[280px]"
       />
 
       <h2 className="mb-4 text-center">Registration Successful</h2>
-      <SparklesIcon className="w-16 h-16 text-primary mb-10" />
+      <SparklesIcon className="text-primary mb-10 h-16 w-16" />
       <div className="w-full max-w-md">
         <Button to="/login" text="Login" />
       </div>
