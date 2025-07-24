@@ -86,7 +86,7 @@ const DoctorFormContent = () => {
   return (
     <div className="space-y-6 pb-6">
       <div className="bg-blue-50 text-secondary p-5 text-sm rounded-md flex items-start gap-2">
-        <div className="flex items-center justify-center">
+        <div className="flex-center">
           <InformationCircleIcon className="w-5 h-5 mt-5 text-primary shrink-0" />
         </div>
         <span>
@@ -108,7 +108,7 @@ const DoctorFormContent = () => {
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center">
+              <div className="w-full h-full flex-center">
                 <UserIcon className="w-10 h-10 text-purple-400" />
               </div>
             )}
