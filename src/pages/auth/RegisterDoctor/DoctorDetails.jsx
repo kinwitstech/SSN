@@ -4,7 +4,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 
-import registerDoctorSchema from "./RegisterDoctorScheme";
+import registerDoctorSchema from "./RegisterDoctorSchema";
 import logo from "@/assets/ssn-logo.png";
 import Button from "@/components/Button";
 import Input from "@/components/InputField";
