@@ -33,14 +33,11 @@ const LandingPage = () => {
       </div>
 
       <div className="w-full max-w-sm space-y-5">
-        <Button text={t("signIn")} to="/login" />
+        <Button text={t("signIn")} to="/login" className="btn-primary btn-lg" />
         <Button
           text={t("registerClinic")}
-          variant="outline"
           to="/registerClinic"
-          color="error"
-          className="btn-dash"
-          size="xl"
+          className="btn-primary btn-outline btn-lg"
         />
       </div>
     </div>

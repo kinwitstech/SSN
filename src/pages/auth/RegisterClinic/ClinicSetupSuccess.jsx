@@ -16,7 +16,7 @@ const ClinicSetupSuccess = () => {
         </div>
       </div>
       <div className="w-full max-w-md">
-        <Button to="/login" text="Login" />
+        <Button to="/login" text="Login" className="btn-primary btn-lg" />
       </div>
     </div>
   );

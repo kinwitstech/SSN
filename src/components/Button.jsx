@@ -9,18 +9,14 @@ const Button = ({
   onClick,
   disabled,
   type = "button",
-  variant,
   className,
   isLoading,
   leftIcon,
   leftIconClassName,
   rightIcon,
   rightIconClassName,
-  color,
-  size = "lg",
 }) => {
   const navigate = useNavigate();
-  const buttonColor = variant !== "link" ? "btn-primary" : "";
 
   const handleClick = (e) => {
     if (disabled || isLoading) {
@@ -38,9 +34,6 @@ const Button = ({
     <button
       className={twMerge(
         "btn flex-center btn-block gap-2 rounded-lg",
-        `${color ? `btn-${color}` : buttonColor}`,
-        `${variant && `btn-${variant}`}`,
-        `${size ? `btn-${size}` : "btn-lg"}`,
         className
       )}
       onClick={handleClick}
@@ -74,7 +67,6 @@ Button.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
-  variant: PropTypes.oneOf(["soft", "outline", "dash", "ghost", "link"]),
   className: PropTypes.string,
   isLoading: PropTypes.bool,
   leftIcon: PropTypes.node,

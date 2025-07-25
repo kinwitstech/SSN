@@ -130,9 +130,9 @@ const RegisterClinic = () => {
             <div className="mr-2 w-50">
               <Button
                 text="Previous"
-                variant="outline"
                 type="button"
                 onClick={handlePrevious}
+                className="btn-primary btn-outline btn-lg"
               />
             </div>
             <div className="ml-2 w-50">
@@ -144,6 +144,7 @@ const RegisterClinic = () => {
                 }
                 type="submit"
                 onClick={onHandleClick}
+                className="btn-primary btn-lg"
               />
             </div>
           </div>

@@ -226,11 +226,11 @@ const DoctorDetails = () => {
             text="Cancel"
             variant="outline"
             onClick={() => navigate({ to: "/" })}
-            className="flex-1"
+            className="btn-primary btn-outline btn-lg flex-1"
           />
           <Button
             text="Complete"
-            className="flex-1"
+            className="btn-primary btn-lg flex-1"
             onClick={async () => {
               const isValid = await trigger();
               if (isValid) {
