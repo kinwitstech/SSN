@@ -15,7 +15,7 @@ const DoctorRegisterSuccess = () => {
       <h2 className="mb-4 text-center">Registration Successful</h2>
       <SparklesIcon className="text-primary mb-10 h-16 w-16" />
       <div className="w-full max-w-md">
-        <Button to="/login" text="Login" />
+        <Button to="/login" text="Login" className="btn-primary btn-lg" />
       </div>
     </div>
   );

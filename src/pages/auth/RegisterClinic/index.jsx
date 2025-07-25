@@ -1,7 +1,7 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import BrandingSetup from "./BrandingSetup";
@@ -21,6 +21,7 @@ const RegisterClinic = () => {
   const [stepIndex, setStepIndex] = useState(0);
   const StepComponent = steps[stepIndex]?.component;
   const navigate = useNavigate();
+  const scrollRef = useRef(null);
 
   const methods = useForm({
     resolver: zodResolver(fullSchema),
@@ -31,6 +32,10 @@ const RegisterClinic = () => {
       servicesProvided: [],
     },
   });
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  }, [stepIndex]);
 
   const onHandleStepperClick = async (index) => {
     if (index === stepIndex) return;
@@ -108,7 +113,7 @@ const RegisterClinic = () => {
         </div>
 
         {/* Scrollable Form Content */}
-        <div className="hide-scroll flex-grow overflow-y-auto">
+        <div ref={scrollRef} className="hide-scroll flex-grow overflow-y-auto">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -125,9 +130,9 @@ const RegisterClinic = () => {
             <div className="mr-2 w-50">
               <Button
                 text="Previous"
-                variant="outlined"
                 type="button"
                 onClick={handlePrevious}
+                className="btn-primary btn-outline btn-lg"
               />
             </div>
             <div className="ml-2 w-50">
@@ -139,6 +144,7 @@ const RegisterClinic = () => {
                 }
                 type="submit"
                 onClick={onHandleClick}
+                className="btn-primary btn-lg"
               />
             </div>
           </div>

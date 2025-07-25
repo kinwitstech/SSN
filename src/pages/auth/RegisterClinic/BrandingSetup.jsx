@@ -1,11 +1,20 @@
 import { PhotoIcon } from "@heroicons/react/24/outline";
+import { PaintBrushIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { Controller, useFormContext } from "react-hook-form";
 
-import Textarea from "../../../components/TextareaField";
+import Select from "@/components/SelectField";
+import Textarea from "@/components/TextareaField";
 
 const acceptedTypes = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
+const fonts = [
+  { label: "Inter", value: "Inter" },
+  { label: "Roboto", value: "Roboto" },
+  { label: "Poppins", value: "Poppins" },
+  { label: "Playfair Display", value: "'Playfair Display', serif" },
+  { label: "Pacifico", value: "'Pacifico', cursive" },
+];
 
 export default function BrandingSetup() {
   const {
@@ -18,10 +27,14 @@ export default function BrandingSetup() {
     register,
     formState,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext({
+    defaultValues: { brandingFont: fonts[0].value },
+  });
+
   const selectedColor = watch("clinicPrimaryColor") || "#0190CC";
   const selectedLogo = watch("clinicLogo");
   const [logoPreview, setLogoPreview] = useState("");
+  const selectedFont = watch("brandingFont");
 
   const handleLogoChange = async (e) => {
     const file = e.target.files[0];
@@ -61,7 +74,7 @@ export default function BrandingSetup() {
   }, [selectedLogo]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" style={{ fontFamily: selectedFont }}>
       <h1 className="mb-2">Branding Setup</h1>
       <p className="text-textSecondary">
         Customize your clinic's appearance for patients
@@ -109,9 +122,7 @@ export default function BrandingSetup() {
 
       {/* Color Picker */}
       <div className="mt-6">
-        <label htmlFor="primaryColorSelection" className="mb-1 block">
-          Pick your primary color
-        </label>
+        <div className="mb-1 block">Pick your primary color</div>
         <div className="flex gap-4">
           <Controller
             id="primaryColorSelection"
@@ -119,13 +130,17 @@ export default function BrandingSetup() {
             control={control}
             defaultValue="#0190CC"
             render={({ field }) => (
-              <div className="inline-block rounded border p-2">
-                <HexColorPicker {...field} color={field.value} />
+              <div className="border-neutral-light inline-block h-33 w-33 rounded border p-2">
+                <HexColorPicker
+                  {...field}
+                  color={field.value}
+                  style={{ width: "7.125rem", height: "7.125rem" }}
+                />
               </div>
             )}
           />
           <div
-            className="mt-2 h-18 w-18 rounded border"
+            className="border-neutral-light mt-2 h-18 w-18 rounded border"
             style={{ backgroundColor: selectedColor }}
           />
         </div>
@@ -137,6 +152,15 @@ export default function BrandingSetup() {
         label="Clinic Tagline"
         placeholder="Enter your clinic's tagline"
         rows={3}
+        register={register}
+        formState={formState}
+      />
+
+      <Select
+        name="brandingFont"
+        label="Branding Font"
+        placeholder="Select font"
+        options={fonts}
         register={register}
         formState={formState}
       />

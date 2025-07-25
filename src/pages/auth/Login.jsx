@@ -102,7 +102,7 @@ const Login = () => {
           text="Get OTP"
           type="submit"
           disabled={phoneValue.length !== 10}
-          className="mt-2"
+          className="btn-primary btn-lg mt-2"
         />
       </form>
     </div>

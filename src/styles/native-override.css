@@ -1,0 +1,30 @@
+@layer base {
+  /* Autofill input handling */
+  input:-webkit-autofill {
+    transition:
+      background-color 9999s ease-out,
+      color 9999s ease-out;
+  }
+
+  [data-theme="dark"] input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px oklch(13% 0.028 261.692) inset !important;
+    -webkit-text-fill-color: white !important;
+  }
+
+  [data-theme="light"] input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: black !important;
+  }
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+  outline-style: none;
+  background-image: none;
+}
+
+::picker(select) {
+  max-height: 80dvh;
+  padding: 8px;
+}

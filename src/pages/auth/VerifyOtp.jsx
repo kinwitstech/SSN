@@ -65,7 +65,11 @@ const VerifyOtp = () => {
           register={register}
           formState={formState}
         />
-        <Button text="Verify & Login" type="submit" />
+        <Button
+          text="Verify & Login"
+          type="submit"
+          className="btn-primary btn-lg"
+        />
       </form>
     </div>
   );
