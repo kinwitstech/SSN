@@ -38,6 +38,9 @@ const LandingPage = () => {
           text={t("registerClinic")}
           variant="outline"
           to="/registerClinic"
+          color="error"
+          className="btn-dash"
+          size="xl"
         />
       </div>
     </div>

@@ -40,7 +40,7 @@ const Button = ({
         "btn flex-center btn-block gap-2 rounded-lg",
         `${color ? `btn-${color}` : buttonColor}`,
         `${variant && `btn-${variant}`}`,
-        `btn-${size}`,
+        `${size ? `btn-${size}` : "btn-lg"}`,
         className
       )}
       onClick={handleClick}
