@@ -3,15 +3,18 @@ import { useLocation, useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import ssnLogo from "../../assets/ssn-logo.png";
-import BackArrowButton from "../../components/BackArrowButton";
-import Button from "../../components/Button";
-import Input from "../../components/InputField";
+import clinicLogo from "@/assets/clinic-sample.jpg";
+import ssnLogo from "@/assets/ssn-logo.png";
+import BackArrowButton from "@/components/BackArrowButton";
+import Button from "@/components/Button";
+import Input from "@/components/InputField";
+import { useSubdomain } from "@/hooks/useSubdomain";
 
 const VerifyOtp = () => {
   const { state: { phone = "" } = {} } = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { subdomain } = useSubdomain();
 
   const { register, handleSubmit, formState } = useForm();
 
@@ -26,11 +29,11 @@ const VerifyOtp = () => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex w-full max-w-sm flex-col items-center space-y-6"
+        className="flex w-full max-w-md flex-col items-center space-y-6"
       >
         <img
-          src={ssnLogo || ""}
-          alt="SSN Logo"
+          src={(subdomain ? clinicLogo : ssnLogo) || ""}
+          alt={subdomain ? "Clinic logo" : "SSN Logo"}
           className="mx-auto h-20 w-20"
           loading="lazy"
         />

@@ -1,18 +1,32 @@
 import { PhoneIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
-import ssnLogo from "../../assets/ssn-logo.png";
-import BackArrowButton from "../../components/BackArrowButton";
-import Button from "../../components/Button";
-import Input from "../../components/InputField";
+import clinicLogo from "@/assets/clinic-sample.jpg";
+import ssnLogo from "@/assets/ssn-logo.png";
+import BackArrowButton from "@/components/BackArrowButton";
+import Button from "@/components/Button";
+import Input from "@/components/InputField";
+import { useSubdomain } from "@/hooks/useSubdomain";
 
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { subdomain } = useSubdomain();
   const [phoneValue, setPhoneValue] = useState("");
+
+  useEffect(() => {
+    if (subdomain) {
+      document.documentElement.style.setProperty("--color-primary", "#6f6dff");
+      document.documentElement.style.setProperty(
+        "--color-primary-dark",
+        "#5553fd"
+      );
+    }
+  }, [subdomain]);
 
   const { register, handleSubmit, setValue, getValues, formState } = useForm({
     mode: "onBlur",
@@ -42,23 +56,38 @@ const Login = () => {
 
   return (
     <div className="flex-center relative min-h-screen px-4 py-6">
-      <BackArrowButton to="/" />
+      {!subdomain && <BackArrowButton to="/" />}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex w-full max-w-sm flex-col items-center space-y-6"
+        className="flex w-full max-w-md flex-col items-center space-y-6"
       >
         <img
-          src={ssnLogo || ""}
-          alt="SSN Logo"
+          src={(subdomain ? clinicLogo : ssnLogo) || ""}
+          alt={subdomain ? "Clinic logo" : "SSN Logo"}
           className="mx-auto h-20 w-20"
           loading="lazy"
         />
 
-        <h1 className="mb-4 w-full text-center">{t("login")}</h1>
+        <h1 className="mb-4 w-full text-center">
+          {subdomain ? `Welcome to ${subdomain}` : `${t("login")}`}
+        </h1>
 
-        <p className="text-textSecondary w-full text-center">
-          {t("pleaseProvideYourMobileNumberToLogin")}
-        </p>
+        {subdomain && (
+          <p className="text-lg text-center">
+            <Trans
+              i18nKey="affordableCareAnywhere"
+              components={{ br: <br /> }}
+            />
+          </p>
+        )}
+
+        {!subdomain && (
+          <>
+            <p className="text-textSecondary w-full text-center">
+              {t("pleaseProvideYourMobileNumberToLogin")}
+            </p>
+          </>
+        )}
 
         <Input
           name="phone"
@@ -96,6 +125,7 @@ const Login = () => {
           onInput={handleInputChange}
           register={register}
           formState={formState}
+          autoComplete={"mobile tel"}
         />
 
         <Button
@@ -104,6 +134,12 @@ const Login = () => {
           disabled={phoneValue.length !== 10}
           className="mt-2"
         />
+        <p className="text-sm text-gray-600">
+          New Patient?{" "}
+          <Link to="/" className="text-primary hover:underline">
+            Register Here
+          </Link>
+        </p>
       </form>
     </div>
   );
