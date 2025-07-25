@@ -2,7 +2,6 @@
   themes:
     light --default,
     dark --prefersdark;
-  include: button, select, label, input, textarea, checkbox, swap, theme-controller, alert, avatar;
 }
 
 /* Light Theme */
