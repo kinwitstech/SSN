@@ -1,7 +1,7 @@
 @import "tailwindcss";
-@import "./typography.css";
-@import "./utilities.css";
-@import "./native-overrides.css";
+@import "./styles/typography.css";
+@import "./styles/utilities.css";
+@import "./styles/native-overrides.css";
 
 @plugin "daisyui" {
   themes:
