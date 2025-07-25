@@ -69,7 +69,7 @@ const Textarea = ({
         }}
         {...rest}
         className={twMerge(
-          "textarea text-textPrimary w-full rounded-xl p-3 outline-none focus:outline-none",
+          "textarea w-full rounded-xl p-3 outline-none focus:outline-none",
           size ? `textarea-${size}` : "textarea-lg",
           error ? "border-error" : "focus-within:border-primary",
           className

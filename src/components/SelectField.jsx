@@ -31,7 +31,7 @@ const Select = ({
         id={name}
         name={name}
         className={twMerge(
-          "border-neutral-light select text-textPrimary w-full rounded-xl outline-none focus:outline-none",
+          "border-neutral-light select w-full rounded-xl outline-none focus:outline-none",
           rest?.disabled ? "cursor-not-allowed bg-gray-100" : "",
           size ? `select-${size}` : "select-lg",
           error ? "border-error" : "focus-within:border-primary",
@@ -44,7 +44,7 @@ const Select = ({
         {...rest}
       >
         {placeholder && (
-          <option value="" disabled>
+          <option value="" disabled={required}>
             {placeholder}
           </option>
         )}

@@ -39,7 +39,7 @@ const Input = ({
     >
       <div
         className={twMerge(
-          "border-neutral-light flex w-full items-center rounded-xl border",
+          "border-neutral-light flex w-full items-center rounded-xl border-1",
           error ? "border-error" : "focus-within:border-primary"
         )}
       >
@@ -56,7 +56,7 @@ const Input = ({
           maxLength={maxLength}
           {...(register ? register(name, rules) : {})}
           className={twMerge(
-            "input text-textPrimary w-full rounded-xl border-0 bg-transparent outline-none focus:outline-none",
+            "input w-full rounded-xl border-0 bg-transparent outline-none focus:outline-none",
             size ? `input-${size}` : "input-lg",
             leftIcon ? "pl-2" : "",
             rightIcon ? "pr-2" : "",

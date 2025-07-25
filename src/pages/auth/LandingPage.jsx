@@ -6,6 +6,7 @@ import Button from "../../components/Button";
 
 const LandingPage = () => {
   const { t } = useTranslation();
+
   return (
     <div className="flex-center min-h-screen flex-col px-4 py-8 text-center">
       <img
@@ -39,13 +40,6 @@ const LandingPage = () => {
           to="/registerClinic"
         />
       </div>
-
-      {/* <p className="text-sm text-gray-600 mt-6">
-        New Patient?{" "}
-        <Link to="/register" className="text-blue-600 hover:underline">
-          Register Here
-        </Link>
-      </p> */}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
@@ -34,6 +35,14 @@ const ClinicDetails = () => {
   const [certificatePreviewName, setCertificatePreviewName] = useState("");
 
   const selectedCertificate = watch("certificate");
+
+  useEffect(() => {
+    const errorKeys = Object.keys(formState?.errors);
+    if (errorKeys.length > 0) {
+      const el = document.querySelector(`[name="${errorKeys[0]}"]`);
+      el?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [formState.errors]);
 
   const handleNumericInput = (e) => {
     e.target.value = e.target.value.replace(/[^0-9]/g, "");
@@ -168,16 +177,24 @@ const ClinicDetails = () => {
 
           <label htmlFor="certificateUpload" className="cursor-pointer">
             <div
+              tabIndex={0}
+              role="button"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  document.getElementById("certificateUpload").click();
+                }
+              }}
               className={twMerge(
                 "border-neutral-light flex w-full items-center justify-between rounded-xl border px-4 py-2",
+                "focus-visible:border-primary focus-visible:outline-none",
                 formState.errors?.certificate?.message ? "border-error" : ""
               )}
             >
-              <span className="text-neutral-dark text-sm">
+              <span className="text-neutral-dark text-lg">
                 {certificatePreviewName || "No file chosen"}
               </span>
-              <span className="bg-primary rounded-xl px-3 py-1 text-sm text-white">
-                Choose File
+              <span className="text-primary rounded-xl px-3 py-1">
+                <ArrowUpTrayIcon className="text-primary h-5 w-5" />
               </span>
             </div>
           </label>
