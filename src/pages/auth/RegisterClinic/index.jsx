@@ -130,7 +130,7 @@ const RegisterClinic = () => {
             <div className="mr-2 w-50">
               <Button
                 text="Previous"
-                variant="outlined"
+                variant="outline"
                 type="button"
                 onClick={handlePrevious}
               />

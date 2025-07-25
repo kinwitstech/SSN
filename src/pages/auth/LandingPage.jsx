@@ -36,7 +36,7 @@ const LandingPage = () => {
         <Button text={t("signIn")} to="/login" />
         <Button
           text={t("registerClinic")}
-          variant="outlined"
+          variant="outline"
           to="/registerClinic"
         />
       </div>

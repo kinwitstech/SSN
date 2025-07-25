@@ -8,7 +8,7 @@ const Button = ({
   to,
   onClick,
   disabled,
-  type,
+  type = "button",
   variant,
   className,
   isLoading,
@@ -16,21 +16,11 @@ const Button = ({
   leftIconClassName,
   rightIcon,
   rightIconClassName,
+  color,
+  size = "lg",
 }) => {
   const navigate = useNavigate();
-
-  const baseStyles =
-    "w-full font-medium py-3 rounded-lg flex items-center justify-center gap-2";
-  const filledStyles = "bg-primary text-white hover:bg-primary-dark";
-  const outlinedStyles = "border border-primary text-primary hover:bg-blue-50";
-  const variantStyles = variant === "outlined" ? outlinedStyles : filledStyles;
-
-  const finalClassName = twMerge(
-    baseStyles,
-    variantStyles,
-    disabled || isLoading ? "opacity-50 cursor-not-allowed" : "",
-    className
-  );
+  const buttonColor = variant !== "link" ? "btn-primary" : "";
 
   const handleClick = (e) => {
     if (disabled || isLoading) {
@@ -46,7 +36,13 @@ const Button = ({
 
   return (
     <button
-      className={finalClassName}
+      className={twMerge(
+        "btn flex-center btn-block gap-2 rounded-lg",
+        `${color ? `btn-${color}` : buttonColor}`,
+        `${variant && `btn-${variant}`}`,
+        `btn-${size}`,
+        className
+      )}
       onClick={handleClick}
       type={type}
       disabled={disabled || isLoading}
@@ -78,27 +74,13 @@ Button.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   type: PropTypes.oneOf(["button", "submit", "reset"]),
-  variant: PropTypes.oneOf(["filled", "outlined"]),
+  variant: PropTypes.oneOf(["soft", "outline", "dash", "ghost", "link"]),
   className: PropTypes.string,
   isLoading: PropTypes.bool,
   leftIcon: PropTypes.node,
   leftIconClassName: PropTypes.string,
   rightIcon: PropTypes.node,
   rightIconClassName: PropTypes.string,
-};
-
-Button.defaultProps = {
-  to: undefined,
-  onClick: undefined,
-  disabled: false,
-  type: "button",
-  variant: "filled",
-  className: "",
-  isLoading: false,
-  leftIcon: null,
-  leftIconClassName: undefined,
-  rightIcon: null,
-  rightIconClassName: undefined,
 };
 
 export default Button;
