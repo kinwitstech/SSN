@@ -47,6 +47,7 @@ export const RegisterPatientSchema = z.object({
     .refine((file) => !file || file.size <= maxImageSize, {
       message: "Image must be under 2MB.",
     }),
+  currentMedication: z.string().min(1, "This field is required."),
 });
 
 export default RegisterPatientSchema;

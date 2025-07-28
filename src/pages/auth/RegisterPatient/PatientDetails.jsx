@@ -67,8 +67,24 @@ const PatientDetails = () => {
   } = methods;
 
   const inputProps = { register, formState };
-
   const selectedProfileImage = watch("profileImage");
+
+  const genderOptions = [
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+    { label: "Other", value: "other" },
+  ];
+
+  const bloodGroupOptions = [
+    { value: "A+", label: "A+" },
+    { value: "A-", label: "A-" },
+    { value: "B+", label: "B+" },
+    { value: "B-", label: "B-" },
+    { value: "AB+", label: "AB+" },
+    { value: "AB-", label: "AB-" },
+    { value: "O+", label: "O+" },
+    { value: "O-", label: "O-" },
+  ];
 
   const handleProfileImageChange = async (e) => {
     const file = e.target.files[0];
@@ -135,6 +151,7 @@ const PatientDetails = () => {
   return (
     <FormProvider {...methods}>
       <div className="mx-auto flex h-screen max-w-xl flex-col p-6">
+        {/* Header */}
         <div className="bg-primary text-base-100 relative mb-6 flex h-16 items-center rounded-md px-4 pt-4">
           <img src={logo} className="mb-4 h-8 w-8" />
           <div className="flex-center absolute inset-0">
@@ -144,9 +161,10 @@ const PatientDetails = () => {
           </div>
         </div>
 
-        <div className="text-secondary mb-5 flex items-start gap-2 rounded-md bg-blue-50 p-5 text-sm">
+        {/* Info Box */}
+        <div className="alert text-secondary mb-5 flex items-start gap-2 rounded-md bg-blue-50 p-5 text-sm">
           <div className="flex-center">
-            <InformationCircleIcon className="text-primary mt-5 h-5 w-5 shrink-0" />
+            <InformationCircleIcon className="text-primary mt-1 h-5 w-5 shrink-0" />
           </div>
           <span>
             Fill in the following details to complete your profile.
@@ -157,26 +175,26 @@ const PatientDetails = () => {
         </div>
 
         {/* Tabs */}
-        <div className="relative mb-4 border-b border-gray-200">
+        <div className="tabs tabs-bordered mb-4">
           <button
             type="button"
-            onClick={() => setActiveTab("personal")}
-            className={`px-4 pb-2 text-sm font-medium transition ${
+            className={`tab text-sm font-medium ${
               activeTab === "personal"
-                ? "border-primary text-primary border-b-2"
+                ? "tab-active !border-primary text-primary !border-b-2"
                 : "text-neutral"
             }`}
+            onClick={() => setActiveTab("personal")}
           >
             Personal
           </button>
           <button
             type="button"
-            onClick={() => setActiveTab("medical")}
-            className={`px-4 pb-2 text-sm font-medium transition ${
+            className={`tab text-sm font-medium ${
               activeTab === "medical"
-                ? "border-primary text-primary border-b-2"
+                ? "tab-active !border-primary text-primary !border-b-2"
                 : "text-neutral"
             }`}
+            onClick={() => setActiveTab("medical")}
           >
             Medical
           </button>
@@ -192,19 +210,28 @@ const PatientDetails = () => {
                   htmlFor="profile-upload"
                   className="relative cursor-pointer"
                 >
-                  <div className="bg-primary/10 flex-center h-24 w-24 rounded-full">
-                    {profileImagePreview ? (
-                      <img
-                        src={profileImagePreview}
-                        className="h-24 w-24 rounded-full object-cover"
-                      />
-                    ) : (
-                      <UserIcon className="text-primary h-10 w-10" />
-                    )}
+                  {/* Avatar container */}
+                  <div className="avatar">
+                    <div className="ring-primary ring-offset-base-100 bg-primary/10 mt-1 w-24 rounded-full ring ring-offset-1">
+                      {profileImagePreview ? (
+                        <img
+                          src={profileImagePreview}
+                          className="h-full w-full object-cover object-center"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <UserIcon className="text-primary h-10 w-10" />
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div className="bg-primary flex-center text-base-100 absolute right-0 bottom-0 h-6 w-6 rounded-full">
+
+                  {/* Pencil icon overlay */}
+                  <div className="bg-primary text-base-100 absolute -right-1 -bottom-1 flex h-6 w-6 items-center justify-center rounded-full">
                     <PencilIcon className="h-3 w-3" />
                   </div>
+
+                  {/* File input */}
                   <input
                     id="profile-upload"
                     name="profileImage"
@@ -214,6 +241,8 @@ const PatientDetails = () => {
                     className="hidden"
                   />
                 </label>
+
+                {/* Error message */}
                 {formState.errors.profileImage?.message && (
                   <p className="text-error mt-2 text-center text-xs">
                     {String(formState.errors.profileImage.message)}
@@ -228,14 +257,14 @@ const PatientDetails = () => {
                 <Input
                   name="fullName"
                   label="Full Name"
-                  placeholder="Enter your name"
+                  placeholder="Enter your full name"
                   required
                   {...inputProps}
                 />
                 <Input
                   name="phone"
                   label="Contact Number"
-                  placeholder="Phone number"
+                  placeholder="Enter your Phone number"
                   required
                   onInput={handleNumericInput}
                   {...inputProps}
@@ -243,39 +272,26 @@ const PatientDetails = () => {
                 <Input
                   name="email"
                   label="Email ID"
-                  placeholder="Add email"
+                  placeholder="Enter your email address"
                   required
                   {...inputProps}
                 />
                 <div className="flex gap-4">
-                  <div className="w-1/2">
+                  <div className="w-3/5">
                     <SelectField
                       name="gender"
                       label="Gender"
                       placeholder="Select Gender"
-                      options={[
-                        { label: "Male", value: "male" },
-                        { label: "Female", value: "female" },
-                        { label: "Other", value: "other" },
-                      ]}
+                      options={genderOptions}
                       {...inputProps}
                     />
                   </div>
-                  <div className="w-1/2">
+                  <div className="w-2/5">
                     <SelectField
                       name="bloodGroup"
                       label="Blood Group"
                       placeholder="Select"
-                      options={[
-                        { value: "A+", label: "A+" },
-                        { value: "A-", label: "A-" },
-                        { value: "B+", label: "B+" },
-                        { value: "B-", label: "B-" },
-                        { value: "AB+", label: "AB+" },
-                        { value: "AB-", label: "AB-" },
-                        { value: "O+", label: "O+" },
-                        { value: "O-", label: "O-" },
-                      ]}
+                      options={bloodGroupOptions}
                       {...inputProps}
                     />
                   </div>
@@ -283,7 +299,7 @@ const PatientDetails = () => {
                 <Textarea
                   name="address"
                   label="Address"
-                  placeholder="Full Address"
+                  placeholder="Enter your Full Address"
                   required
                   {...inputProps}
                 />
@@ -312,7 +328,7 @@ const PatientDetails = () => {
                   {...inputProps}
                 />
                 <Textarea
-                  name="currentillness"
+                  name="currentIllness"
                   label="Current Illness (If any)"
                   placeholder="List your illness here"
                   rows={4}
@@ -320,7 +336,7 @@ const PatientDetails = () => {
                   {...inputProps}
                 />
                 <Textarea
-                  name="currentmedication"
+                  name="currentMedication"
                   label="Current Medications (If any)"
                   placeholder="List your Medications here"
                   rows={4}
@@ -328,7 +344,7 @@ const PatientDetails = () => {
                   {...inputProps}
                 />
                 <Textarea
-                  name="pastsuregries"
+                  name="pastSuregries"
                   label="Past Surgeries"
                   placeholder="Mention any past surgeries"
                   rows={4}
@@ -344,13 +360,12 @@ const PatientDetails = () => {
         <div className="mt-6 mb-6 flex gap-4">
           <Button
             text="Cancel"
-            variant="outline"
+            className="btn btn-outline btn-lg flex-1"
             onClick={() => navigate({ to: "/" })}
-            className="btn-primary btn-outline btn-lg flex-1"
           />
           <Button
             text="Complete"
-            className="btn-primary btn-lg flex-1"
+            className="btn btn-primary btn-lg flex-1"
             onClick={async () => {
               const isValid = await trigger();
               if (isValid) {
