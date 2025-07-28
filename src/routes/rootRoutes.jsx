@@ -9,6 +9,8 @@ import {
   verifyOtp,
   doctorDetailsRoute,
   doctorRegisterSuccessRoute,
+  patientDetailsRoute,
+  patientRegisterSuccessRoute,
 } from "./authRoutes";
 import { appLayoutRoute } from "./superAdminRoutes";
 
@@ -25,4 +27,6 @@ export const routeTree = rootRoute.addChildren([
   registerClinicSuccessRoute,
   doctorDetailsRoute,
   doctorRegisterSuccessRoute,
+  patientDetailsRoute,
+  patientRegisterSuccessRoute,
 ]);
