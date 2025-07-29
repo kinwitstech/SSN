@@ -17,7 +17,7 @@ const VerifyOtp = () => {
 
   const onSubmit = (data) => {
     console.log("Submitted OTP:", data?.otp);
-    navigate({ to: "/superAdmin" });
+    navigate({ to: "/super-admin/dashboard" });
   };
 
   return (
