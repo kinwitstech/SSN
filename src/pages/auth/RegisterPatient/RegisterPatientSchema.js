@@ -8,7 +8,25 @@ const allowedImageTypes = [
 ];
 const maxImageSize = 2 * 1024 * 1024;
 
-export const RegisterPatientSchema = z.object({
+const personalFields = [
+  "fullName",
+  "profileImage",
+  "phone",
+  "email",
+  "address",
+  "dob",
+  "bloodGroup",
+  "gender",
+];
+
+const medicalFields = [
+  "allergies",
+  "currentIllness",
+  "currentMedication",
+  "pastSurgeries",
+];
+
+const RegisterPatientSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
   phone: z
     .string()
@@ -50,4 +68,4 @@ export const RegisterPatientSchema = z.object({
   currentMedication: z.string().min(1, "This field is required."),
 });
 
-export default RegisterPatientSchema;
+export { RegisterPatientSchema, personalFields, medicalFields };
